@@ -24,7 +24,7 @@
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main class="" style="margin: 0;padding: 0;">
+      <el-main class="" style="margin: 0;padding: 0;padding-bottom: 30px;">
         <router-view></router-view>
       </el-main>
     </el-container>
