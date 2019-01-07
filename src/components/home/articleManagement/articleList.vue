@@ -94,9 +94,6 @@
     beforeMount() {
     },
     mounted() {
-      // this.list = this.states.map(item => {
-      //   return {value: item, label: item};
-      // });
       //获取下拉列表文章类型
       this.$axios({
         method: "GET",

@@ -14,20 +14,16 @@
             <router-link to="/home/systemManagement"><span>系统管理</span></router-link>
           </li>
         </ul>
-        <!--<div class="no_login" v-if="!isLogin">
-          <a href="javascript:void(0)" @click="login">登录</a>
-        </div>
-        <div class="login" v-if="isLogin">
-          <div @click.stop="toggle">
-            &lt;!&ndash;<img src="@/common/images/bg.jpg" class="user-head" alt="">&ndash;&gt;
-            admin&nbsp;
-            <img src="@/common/images/down.png" alt="">
-          </div>
-          <ul v-if="switchover" @mouseleave.stop="leaveUl">
-            <li><a href="" target="_blank">账户信息</a></li>
-            <li @click.stop="dropOut">退出</li>
+        <el-dropdown class="user_info" trigger="click" placement="top" @mouseleave.stop.native="leaveUl" v-if="isLogin">
+          <el-button type="primary"  @click.native="toggle">
+            {{"admin"}}
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <ul v-if="switchover">
+            <li>修改密码</li>
+            <li @click.stop="dropOut">退出登录</li>
           </ul>
-        </div>-->
+        </el-dropdown>
       </div>
     </div>
     <router-view class="home_main"></router-view>
@@ -40,55 +36,29 @@
     components: {},
     data() {
       return {
-        isLogin: false,
+        isLogin: true,
         switchover: false,
       }
     },
     created() {
     },
     beforeMount() {
+      if(!sessionStorage.myLogin){
+        this.$router.push("/login")
+      }
     },
     mounted() {
     },
     watch: {},
     computed: {},
     methods: {
-      changTop() {
-        if (this.$route.path == "/login") {
-          this.isShowTopSearch = false;
-        }
-      },
       toggle() {
         this.switchover = !this.switchover
       },
       leaveUl() {
         this.switchover = false
       },
-      login() {
-        let redirectURL = window.location.href;
-        let url = `?redirectURL=${redirectURL}`;
-        window.location.href = `${loginPlatform}/login${url}`;
-      },
       dropOut() {
-        let sessionsId = JSON.parse(sessionStorage.getItem("userInfo")).session_id;
-        this.$axios({
-          method: 'DELETE',
-          url: `${this.$baseURL}/v1/sessions/${sessionsId}`,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          }
-        }).then(res => {
-          sessionStorage.removeItem('loginInfo');
-          sessionStorage.removeItem('userInfo');
-          /*document.cookie = `token=;expires=${new Date(0)}`;
-          document.cookie = `user_id=;expires=${new Date(0)}`;*/
-          document.cookie = `token=;expires=${new Date(0)};domain=.datajs.com.cn`;
-          document.cookie = `user_id=;expires=${new Date(0)};domain=.datajs.com.cn`;
-          this.switchover = false;
-          location.reload()
-        }).catch(error => {
-          console.log(error);
-        })
       },
     },
   }
@@ -136,6 +106,29 @@
                   border-bottom 1px solid #409EFF
                 }
               }
+            }
+          }
+        }
+        .user_info{
+          float right
+          position relative
+          margin-right 20px
+          min-width 100px
+          ul{
+            text-align center
+            width 100px
+            position absolute
+            top 80px
+            right 0
+            border-radius 5px
+            border 1px solid #409EFF
+            li{
+              cursor pointer
+              height 30px
+              line-height 30px
+            }
+            li:hover{
+              color #409EFF
             }
           }
         }

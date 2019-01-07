@@ -20,12 +20,16 @@
     },
     created() {
     },
-    beforeMount(){},
+    beforeMount() {
+    },
     mounted() {
     },
     watch: {
       //监听路由变化执行方法
       $route(to, from) {
+        if(!sessionStorage.myLogin){
+          this.$router.push("/login")
+        }
       }
     },
     computed: {},
@@ -45,6 +49,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    
     .main {
       flex: 1;
       width 100%
