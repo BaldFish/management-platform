@@ -14,16 +14,26 @@
             <router-link to="/home/systemManagement"><span>系统管理</span></router-link>
           </li>
         </ul>
-        <el-dropdown class="user_info" trigger="click" placement="top" @mouseleave.stop.native="leaveUl" v-if="isLogin">
+        <Dropdown style="margin-left: 20px" trigger="click" class="user_info">
+          <Button type="primary">
+            {{"admin"}}
+            <Icon type="ios-arrow-down"></Icon>
+          </Button>
+          <DropdownMenu slot="list">
+            <DropdownItem>修改密码</DropdownItem>
+            <DropdownItem>退出登录</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        <!--<el-dropdown class="user_info" trigger="click" placement="top" @mouseleave.stop.native="leaveUl" v-if="isLogin">
           <el-button type="primary"  @click.native="toggle">
             {{"admin"}}
-            <i class="el-icon-arrow-down el-icon--right"></i>
+            <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>
           </el-button>
           <ul v-if="switchover">
-            <li>修改密码</li>
-            <li @click.stop="dropOut">退出登录</li>
+          <li>修改密码</li>
+          <li @click.stop="dropOut">退出登录</li>
           </ul>
-        </el-dropdown>
+        </el-dropdown>-->
       </div>
     </div>
     <router-view class="home_main"></router-view>
@@ -71,9 +81,9 @@
     flex-direction: column;
     .head_wrap {
       .head{
-        width 1200px
+        min-width 1200px
         height 100px
-        margin 0 auto
+        //margin 0 auto
         font-size 0;
         color #000000
         line-height 100px
@@ -114,30 +124,37 @@
           position relative
           margin-right 20px
           min-width 100px
-          ul{
-            text-align center
-            width 100px
-            position absolute
-            top 80px
-            right 0
-            border-radius 5px
-            border 1px solid #409EFF
-            li{
-              cursor pointer
-              height 30px
-              line-height 30px
-            }
-            li:hover{
-              color #409EFF
-            }
+          .ivu-btn{
+            font-size 16px
           }
         }
       }
     }
     .home_main{
       flex: 1;
-      width 1200px
-      margin: 0 auto;
+      min-width 1200px
+      //margin: 0 auto;
+    }
+  }
+</style>
+<style lang="stylus">
+  .user_info{
+    .ivu-select-dropdown{
+      position: absolute !important
+      will-change: top, left;
+      transform-origin: center top 0px !important;
+      top: 70px !important;
+      left: 0px !important;
+      border 1px solid #409EFF
+      .ivu-dropdown-menu{
+        .ivu-dropdown-item{
+          font-size 16px !important
+          width 110px !important
+        }
+        .ivu-dropdown-item:hover{
+          color #409EFF
+        }
+      }
     }
   }
 </style>
