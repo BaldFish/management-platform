@@ -7,6 +7,7 @@ import myUserQuery from '@/components/home/userManagement/userQuery'
 import myAccountRanking from '@/components/home/userManagement/accountRanking'
 import myYuanDouRecharge from '@/components/home/userManagement/yuanDouRecharge'
 import myAssetQuery from '@/components/home/userManagement/assetQuery'
+import myUserDetails from '@/components/home/userManagement/userDetails'
 import mySystemManagement from '@/components/home/systemManagement/systemManagement'
 import myBannerList from '@/components/home/systemManagement/bannerList'
 import myAddBanner from '@/components/home/systemManagement/addBanner'
@@ -63,6 +64,11 @@ export default new Router({
               path: '/home/userManagement/assetQuery',
               name: 'assetQuery',
               component: myAssetQuery,
+            },
+            {
+              path: '/home/userManagement/userDetails',
+              name: 'userDetails',
+              component: myUserDetails,
             },
           ]
         },
