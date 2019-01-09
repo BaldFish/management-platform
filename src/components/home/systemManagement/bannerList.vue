@@ -85,6 +85,7 @@
         url: `${this.$baseURL}/v1/resource/search?type=show_type`
       })
         .then(res => {
+          console.log(res.data.info)
           res.data.info.forEach((data)=>{
             this.selectData.push({text: data.Name, value: data._id })
           })
