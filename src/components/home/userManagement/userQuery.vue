@@ -15,13 +15,14 @@
         <br/>
         <span>注册时间：</span>
         <el-date-picker
-          v-model="value6"
+          v-model="time"
+          value-format="yyyy-MM-dd"
           type="daterange"
           range-separator="~"
           start-placeholder="开始日期"
           end-placeholder="结束日期">
         </el-date-picker>
-        <el-button @click="">搜索</el-button>
+        <el-button @click="btnSearchUserList">搜索</el-button>
         <br> <br>
         <span>总人数：</span><span>{{this.totalUser}}个</span>
         <span>已实名人数：</span><span>{{this.totalAuth}}个</span>
@@ -31,7 +32,8 @@
         <span>元豆豆总金额：</span><span>{{this.totalGGD}}</span>
         <br> <br>
       </div>
-      <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange">
+      <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange"
+                @row-click="getClickInfo">
         <el-table-column type="selection" align="center" width="50">
         </el-table-column>
         <el-table-column label="编号" align="center" type="index" width="50">
@@ -53,7 +55,7 @@
         </el-table-column>
         <el-table-column label="钱包地址" align="center">
           <template slot-scope="scope">
-            <span>{{ scope.row.wallet_addres }}</span>
+            <span>{{ scope.row.wallet_address }}</span>
           </template>
         </el-table-column>
         <el-table-column label="注册时间" align="center">
@@ -109,18 +111,18 @@
         totalGGD: "",
         userList: [],
         phone: "",
-        name:"",
-        idCard:"",
-        walletAddress:"",
-        search:false,
+        name: "",
+        idCard: "",
+        walletAddress: "",
+        search: false,//是否搜索标识
         multipleSelection: [],
-        multipleDelete: [],
+        //multipleDelete: [],
         loading: false,
         currentPage: 1,
-        total: 10,
+        //total: 10,
         page: 1,
         limit: 10,
-        value6: '',
+        time: [],
       }
     },
     created() {
@@ -130,8 +132,21 @@
     },
     mounted() {
     },
-    watch: {},
-    computed: {},
+    watch: {
+      time: function () {
+        if(this.time===null){
+          this.time=[]
+        }
+      }
+    },
+    computed: {
+      //筛查出选中的数据的user_id组成的数组
+      multipleDelete:function () {
+        return this.$_.map(this.multipleSelection, function (item) {
+          return item._id
+        });
+      }
+    },
     methods: {
       //获取用户列表
       getUserList() {
@@ -155,7 +170,7 @@
           this.totalGGD = res.data.totalYuand;
           let that = this;
           res.data.users.forEach(function (item) {
-            if(item.created_at){
+            if (item.created_at) {
               item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
             }
           });
@@ -164,45 +179,117 @@
           console.log(error)
         })
       },
-      handleSizeChange(val) {
-        this.limit = val;
-        this.getUserList()
-      },
-      handleCurrentChange(val) {
-        this.page = val;
-        this.getUserList()
-      },
-      /*changeValue() {
-        this.page = 1;
-        this.currentPage = 1;
-        this.getArticleList()
-      },*/
-      handleDeletes() {
-        var multipleDelete = this.$_.map(this.multipleSelection, function (item) {
-          return item._id
-        });
-        if (multipleDelete.length === 0) {
-          return
-        }
-        var multipleData = JSON.stringify({ids: multipleDelete});
-        var token = JSON.parse(sessionStorage.myLogin).token
+      //点击搜索按钮搜索用户列表
+      btnSearchUserList() {
+        this.search = true;//是否搜索标识
+        this.page = 1;//按钮搜索时初始化page
+        let data = {
+          page: this.page,
+          limit: this.limit,
+          phone: this.phone !== "" ? '+86' + this.phone : this.phone,
+          realname: this.name,
+          idcard: this.idCard,
+          wallet_address: this.walletAddress,
+          time1: this.time[0],
+          time2: this.time[1],
+        };
         this.$axios({
           method: "POST",
-          url: `${this.$baseURL}/v1/essay/delete-batch`,
+          url: `${this.$baseURL}/v1/backstage/users/find`,
+          data: this.$querystring.stringify(data),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
+        }).then(res => {
+          this.totalUser = res.data.totalUser;
+          this.totalAuth = res.data.totalAuth;
+          this.totalCarInfo = res.data.totalCarInfo;
+          this.totalYJF = res.data.totalYuanj;
+          this.totalYDD = res.data.totalYdd;
+          this.totalGGD = res.data.totalYuand;
+          let that = this;
+          res.data.users.forEach(function (item) {
+            if (item.created_at) {
+              item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
+            }
+          });
+          this.userList = res.data.users;
+        }).catch(error => {
+          console.log(error)
+        })
+      },
+      //分页切换搜索用户列表
+      pageSearchUserList() {
+        this.search = true;
+        let data = {
+          page: this.page,
+          limit: this.limit,
+          phone: this.phone !== "" ? '+86' + this.phone : this.phone,
+          realname: this.name,
+          idcard: this.idCard,
+          wallet_address: this.walletAddress,
+          time1: this.time[0],
+          time2: this.time[1],
+        };
+        this.$axios({
+          method: "POST",
+          url: `${this.$baseURL}/v1/backstage/users/find`,
+          data: this.$querystring.stringify(data),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
+        }).then(res => {
+          this.totalUser = res.data.totalUser;
+          this.totalAuth = res.data.totalAuth;
+          this.totalCarInfo = res.data.totalCarInfo;
+          this.totalYJF = res.data.totalYuanj;
+          this.totalYDD = res.data.totalYdd;
+          this.totalGGD = res.data.totalYuand;
+          let that = this;
+          res.data.users.forEach(function (item) {
+            if (item.created_at) {
+              item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
+            }
+          });
+          this.userList = res.data.users;
+        }).catch(error => {
+          console.log(error)
+        })
+      },
+      //获取所点击行的信息
+      getClickInfo(row){
+        sessionStorage.setItem("clickInfo", JSON.stringify(row));
+      },
+      //更改每页显示条数
+      handleSizeChange(val) {
+        this.limit = val;
+        this.search ? this.pageSearchUserList() : this.getUserList();
+      },
+      //切换分页
+      handleCurrentChange(val) {
+        this.page = val;
+        this.search ? this.pageSearchUserList() : this.getUserList();
+      },
+      //删除按钮删除方法
+      handleDeletes() {
+        if (this.multipleDelete.length === 0) {
+          return
+        }
+        let multipleData =JSON.stringify({user_id: this.multipleDelete});
+        this.$axios({
+          method: "POST",
+          url: `${this.$baseURL}/v1/backstage/users/delete`,
           data: multipleData,
           headers: {
-            "X-Access-Token": token,
             "Content-Type": "application/json"
           }
         }).then((res) => {
-          this.getUserList();
-          this.$message({
-            message: "操作成功！",
-            type: "success"
-          });
+          this.page=1;
+          this.search ? this.pageSearchUserList() : this.getUserList();
         }).catch((err) => {
         })
       },
+      //获取选中复选框数据
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },
