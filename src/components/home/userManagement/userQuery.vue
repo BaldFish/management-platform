@@ -259,6 +259,7 @@
       //获取所点击行的信息
       getClickInfo(row){
         sessionStorage.setItem("clickInfo", JSON.stringify(row));
+        this.$router.push("/home/userManagement/userDetails")
       },
       //更改每页显示条数
       handleSizeChange(val) {
