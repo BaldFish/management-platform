@@ -15,12 +15,9 @@
         <br/>
         <br/>
         <span>注册时间：</span>
-        <el-date-picker
-          v-model="time"
-          type="daterange"
-          range-separator="~"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期">
+        <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
+                        end-placeholder="结束日期"
+                        value-format="yyyy-MM-dd" default-value="2019-01-01">
         </el-date-picker>
         <el-button @click="btnSearchUserList" style="position: absolute;left: 930px">搜索</el-button>
         <br> <br>
@@ -122,7 +119,7 @@
         //total: 10,
         page: 1,
         limit: 10,
-        time: ["",""],
+        time:"",
       }
     },
     created() {
@@ -135,8 +132,9 @@
     watch: {
       time: function () {
         if(this.time===null){
-          this.time=["",""]
+          this.time=""
         }
+        console.log(this.time)
       }
     },
     computed: {

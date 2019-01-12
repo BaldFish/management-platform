@@ -154,12 +154,9 @@
                 </el-radio-group>
                 <div class="time-query">
                   <span>创建时间：</span>
-                  <el-date-picker
-                    v-model="time"
-                    type="daterange"
-                    range-separator="~"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期">
+                  <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
+                                  end-placeholder="结束日期"
+                                  value-format="yyyy-MM-dd" default-value="2019-01-01">
                   </el-date-picker>
                   <el-button @click="queryUserInfo">搜索</el-button>
                 </div>
@@ -255,12 +252,9 @@
                 </el-radio-group>
                 <div class="time-query">
                   <span>创建时间：</span>
-                  <el-date-picker
-                    v-model="time"
-                    type="daterange"
-                    range-separator="~"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期">
+                  <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
+                                  end-placeholder="结束日期"
+                                  value-format="yyyy-MM-dd" default-value="2018-01-01">
                   </el-date-picker>
                   <el-button @click="queryUserInfo">搜索</el-button>
                 </div>
@@ -370,7 +364,7 @@
         type1: "1",
         type2: "1",
         type3: "1",
-        time: ["", ""],
+        time: "",
         userInfo: {
           roleimg: {},
         },
@@ -395,14 +389,16 @@
     watch: {
       time: function () {
         if (this.time === null) {
-          this.time = ["", ""]
+          this.time = ""
         }
+        console.log(this.time)
       }
     },
     computed: {},
     methods: {
       //查询用户基本信息和交易流水
       queryUserInfo() {
+        
         let data = {
           user_id: this.userId,
           type1: this.type1,
