@@ -35,49 +35,49 @@
         </tr>
         <tr>
           <td>行驶证：</td>
-          <td>{{userInfo.driverlicense}}</td>
+          <td style="color: red">{{userInfo1.red_chapter}}</td>
           <td>认证时间：</td>
-          <td>{{""}}</td>
-          <td><a href="" target="_blank">查看照片</a></td>
+          <td>{{userInfo1.updated_at}}</td>
+          <td><a :href="userInfo1.url" target="_blank">查看照片</a></td>
         </tr>
         <tr>
           <td>车牌号：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.plat_num}}</td>
           <td>车辆类型：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.car_type}}</td>
           <td></td>
         </tr>
         <tr>
           <td>所有人：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.name}}</td>
           <td>地址：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.address}}</td>
           <td></td>
         </tr>
         <tr>
           <td>品牌型号：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.brand_model_num}}</td>
           <td>使用性质：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.use_type}}</td>
           <td></td>
         </tr>
         <tr>
           <td>发动机号码：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.engine_no}}</td>
           <td>车辆识别代号：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.car_vin}}</td>
           <td></td>
         </tr>
         <tr>
           <td>注册登记日期：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.register_data}}</td>
           <td>发证日期：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.issue_data}}</td>
           <td></td>
         </tr>
         <tr>
           <td>驾驶证：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo.driverlicense}}</td>
           <td>认证时间：</td>
           <td>{{""}}</td>
           <td><a href="" target="_blank">查看照片</a></td>
@@ -100,7 +100,7 @@
           <td>职业：</td>
           <td>{{userInfo.career}}</td>
           <td>用户来源：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo.platform}}</td>
           <td></td>
         </tr>
         <tr>
@@ -368,6 +368,7 @@
         userInfo: {
           roleimg: {},
         },
+        userInfo1: {},
         totalYJF: "",
         totalYDD: "",
         totalGGD: "",
@@ -418,10 +419,14 @@
           res.data.user.roleimg = JSON.parse(res.data.user.roleimg);
           res.data.user.created_at = this.$utils.formatDate(new Date(res.data.user.created_at), "yyyy-MM-dd hh:mm:ss");
           this.userInfo = res.data.user;
-          this.total=res.data.transction.data.count;
+          this.total = res.data.transction.data.count;
           this.totalYJF = res.data.totalyuanj;
           this.totalYDD = res.data.totalydd;
           this.totalGGD = res.data.totalyuand;
+          res.data.certification.res.created_at = this.$utils.formatDate(new Date(res.data.certification.res.created_at), "yyyy-MM-dd hh:mm:ss");
+          res.data.certification.res.updated_at = this.$utils.formatDate(new Date(res.data.certification.res.updated_at), "yyyy-MM-dd hh:mm:ss");
+          this.userInfo1 = res.data.certification.res
+          console.log(this.userInfo1)
           let that = this;
           res.data.transction.data.txn.forEach(function (item) {
             item.updated_at = that.$utils.formatDate(new Date(item.updated_at), "yyyy-MM-dd hh:mm:ss");
