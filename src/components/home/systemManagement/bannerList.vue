@@ -2,7 +2,8 @@
   <div class="bannerList">
     <section>
       <el-row>
-        <h3>广告轮播管理</h3>
+        <h3 style="font-size: 20px;font-weight: bold;color: #000000">广告轮播管理</h3>
+        <br>
         <el-col :span="24">
           <!--表格-->
           <el-table :data="tableData" style="width: 100%" @selection-change="handleSelectionChange" @filter-change="handleFilterChange">

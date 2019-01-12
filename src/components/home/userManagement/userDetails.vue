@@ -1,6 +1,8 @@
 <template>
   <div class="userDetails">
     <div class="user-info">
+      <h3 style="font-size: 20px;font-weight: bold;color: #000000">基本信息</h3>
+      <br>
       <table>
         <tbody>
         <tr>
@@ -131,9 +133,9 @@
               <tbody>
               <tr>
                 <th>金额</th>
-                <td>{{200.00}}</td>
-                <td>{{20.00}}</td>
-                <td>{{0.00}}</td>
+                <td>{{totalYJF}}</td>
+                <td>{{totalGGD}}</td>
+                <td>{{totalYDD}}</td>
               </tr>
               </tbody>
             </table>
@@ -146,8 +148,8 @@
                 <!--第3层tab筛选和搜索-->
                 <el-radio-group v-model="type3" style="margin-bottom: 30px;float: left;" @change="type3TabClick">
                   <el-radio-button label="1">全部</el-radio-button>
-                  <el-radio-button label="2">充值</el-radio-button>
-                  <el-radio-button label="3">消费</el-radio-button>
+                  <el-radio-button label="2">奖励</el-radio-button>
+                  <el-radio-button label="3">扣款</el-radio-button>
                   <el-radio-button label="4">转账</el-radio-button>
                 </el-radio-group>
                 <div class="time-query">
@@ -166,22 +168,22 @@
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
                     <el-table-column label="钱包地址" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
+                        <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="姓名" align="center">
+                    <el-table-column label="创建时间" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
+                        <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
                     <el-table-column label="金额" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                        <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="占比" align="center">
+                    <el-table-column label="备注" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
+                        <span>{{ scope.row.rule }}</span>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -191,22 +193,22 @@
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
                     <el-table-column label="钱包地址" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
+                        <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="姓名" align="center">
+                    <el-table-column label="创建时间" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
+                        <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
                     <el-table-column label="金额" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                        <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="占比" align="center">
+                    <el-table-column label="备注" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
+                        <span>{{ scope.row.rule }}</span>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -216,22 +218,22 @@
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
                     <el-table-column label="钱包地址" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
+                        <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="姓名" align="center">
+                    <el-table-column label="创建时间" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
+                        <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
                     <el-table-column label="金额" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                        <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="占比" align="center">
+                    <el-table-column label="备注" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
+                        <span>{{ scope.row.rule }}</span>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -247,8 +249,8 @@
                 <!--第3层tab筛选和搜索-->
                 <el-radio-group v-model="type3" style="margin-bottom: 30px;float: left;" @change="type3TabClick">
                   <el-radio-button label="1">全部</el-radio-button>
-                  <el-radio-button label="2">充值</el-radio-button>
-                  <el-radio-button label="3">消费</el-radio-button>
+                  <el-radio-button label="2">奖励</el-radio-button>
+                  <el-radio-button label="3">扣款</el-radio-button>
                   <el-radio-button label="4">转账</el-radio-button>
                 </el-radio-group>
                 <div class="time-query">
@@ -260,29 +262,29 @@
                     start-placeholder="开始日期"
                     end-placeholder="结束日期">
                   </el-date-picker>
-                  <el-button>搜索</el-button>
+                  <el-button @click="queryUserInfo">搜索</el-button>
                 </div>
                 <el-tab-pane label="元积分" name="1">
                   <!--表格-->
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
                     <el-table-column label="钱包地址" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
+                        <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="姓名" align="center">
+                    <el-table-column label="创建时间" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
+                        <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
                     <el-table-column label="金额" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                        <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="占比" align="center">
+                    <el-table-column label="备注" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
+                        <span>{{ scope.row.rule }}</span>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -292,22 +294,22 @@
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
                     <el-table-column label="钱包地址" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
+                        <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="姓名" align="center">
+                    <el-table-column label="创建时间" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
+                        <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
                     <el-table-column label="金额" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                        <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="占比" align="center">
+                    <el-table-column label="备注" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
+                        <span>{{ scope.row.rule }}</span>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -317,22 +319,22 @@
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
                     <el-table-column label="钱包地址" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
+                        <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="姓名" align="center">
+                    <el-table-column label="创建时间" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
+                        <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
                     <el-table-column label="金额" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                        <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="占比" align="center">
+                    <el-table-column label="备注" align="center">
                       <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
+                        <span>{{ scope.row.rule }}</span>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -346,7 +348,7 @@
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
               :current-page.sync="currentPage"
-              :page-size=5
+              :page-size=limit
               :page-sizes="[5, 10, 20, 30]"
               layout="total, sizes, prev, pager, next, jumper"
               :total=total>
@@ -372,11 +374,14 @@
         userInfo: {
           roleimg: {},
         },
+        totalYJF: "",
+        totalYDD: "",
+        totalGGD: "",
         tableData: [],
         currentPage: 1,
         total: 10,
         page: 1,
-        limit: 10
+        limit: 10,
       }
     },
     created() {
@@ -417,9 +422,17 @@
           }
         }).then(res => {
           res.data.user.roleimg = JSON.parse(res.data.user.roleimg);
-          res.data.user.created_at=this.$utils.formatDate(new Date(res.data.user.created_at), "yyyy-MM-dd hh:mm:ss");
+          res.data.user.created_at = this.$utils.formatDate(new Date(res.data.user.created_at), "yyyy-MM-dd hh:mm:ss");
           this.userInfo = res.data.user;
-          console.log(res.data)
+          this.total=res.data.transction.data.count;
+          this.totalYJF = res.data.totalyuanj;
+          this.totalYDD = res.data.totalydd;
+          this.totalGGD = res.data.totalyuand;
+          let that = this;
+          res.data.transction.data.txn.forEach(function (item) {
+            item.updated_at = that.$utils.formatDate(new Date(item.updated_at), "yyyy-MM-dd hh:mm:ss");
+          });
+          this.tableData = res.data.transction.data.txn
         }).catch(error => {
           console.log(error)
         })

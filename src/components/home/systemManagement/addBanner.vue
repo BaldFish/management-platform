@@ -1,7 +1,7 @@
 <template>
   <div class="addBanner">
     <div>
-      <router-link to="/home/systemManagement/bannerList"><h3>返回列表</h3><br></router-link>
+      <router-link to="/home/systemManagement/bannerList"><h3 style="font-size: 20px;font-weight: bold;color: #000000">返回列表</h3><br></router-link>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" size="medium">
         <el-form-item label="标题：" prop="title">
           <el-input v-model="ruleForm.title" style="width: 400px;"></el-input>

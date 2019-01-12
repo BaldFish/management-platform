@@ -2,7 +2,8 @@
   <div class="addArticle">
     <div>
       <router-link to="/home/articleManagement/articleList">
-        <h3>返回列表</h3>
+        <h3 style="font-size: 20px;font-weight: bold;color: #000000">返回列表</h3>
+        <br>
       </router-link>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" size="medium">
         <el-form-item label="类型：" prop="category_code">

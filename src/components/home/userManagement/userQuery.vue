@@ -1,8 +1,9 @@
 <template>
   <div class="userQuery">
     <div class="list_wrap">
-      <div>
-        <h3>用户信息</h3>
+      <div style="position: relative">
+        <h3 style="font-size: 20px;font-weight: bold;color: #000000">用户信息</h3>
+        <br>
         <span>手机号码：</span>
         <el-input v-model="phone" placeholder="请输入手机号码" clearable style="width: 150px"></el-input>
         <span>真实姓名：</span>
@@ -16,20 +17,19 @@
         <span>注册时间：</span>
         <el-date-picker
           v-model="time"
-          value-format="yyyy-MM-dd"
           type="daterange"
           range-separator="~"
           start-placeholder="开始日期"
           end-placeholder="结束日期">
         </el-date-picker>
-        <el-button @click="btnSearchUserList">搜索</el-button>
+        <el-button @click="btnSearchUserList" style="position: absolute;left: 930px">搜索</el-button>
         <br> <br>
-        <span>总人数：</span><span>{{this.totalUser}}个</span>
-        <span>已实名人数：</span><span>{{this.totalAuth}}个</span>
-        <span>已绑定行驶证人数：</span><span>{{this.totalCarInfo}}个</span>
-        <span>元积分总金额：</span><span>{{this.totalYJF}}</span>
-        <span>广告豆总金额：</span><span>{{this.totalYDD}}</span>
-        <span>元豆豆总金额：</span><span>{{this.totalGGD}}</span>
+        <span>总人数：</span><span class="mar">{{this.totalUser}}个</span>
+        <span>已实名人数：</span><span class="mar">{{this.totalAuth}}个</span>
+        <span>已绑定行驶证人数：</span><span class="mar">{{this.totalCarInfo}}个</span>
+        <span>元积分总金额：</span><span class="mar">{{this.totalYJF}}</span>
+        <span>广告豆总金额：</span><span class="mar">{{this.totalYDD}}</span>
+        <span>元豆豆总金额：</span><span class="mar">{{this.totalGGD}}</span>
         <br> <br>
       </div>
       <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange"
@@ -38,7 +38,7 @@
         </el-table-column>
         <el-table-column label="编号" align="center" type="index" width="50">
         </el-table-column>
-        <el-table-column label="手机号码" align="center">
+        <el-table-column label="手机号码" align="center" width="120">
           <template slot-scope="scope">
             <span>{{ scope.row.phone }}</span>
           </template>
@@ -48,17 +48,17 @@
             <span>{{ scope.row.realname }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="身份证号" align="center">
+        <el-table-column label="身份证号" align="center" width="120">
           <template slot-scope="scope">
             <span>{{ scope.row.idcard}}</span>
           </template>
         </el-table-column>
-        <el-table-column label="钱包地址" align="center">
+        <el-table-column label="钱包地址" align="center" width="130">
           <template slot-scope="scope">
             <span>{{ scope.row.wallet_address }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="注册时间" align="center">
+        <el-table-column label="注册时间" align="center" width="160">
           <template slot-scope="scope">
             <span>{{ scope.row.created_at }}</span>
           </template>
@@ -84,7 +84,7 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page.sync="currentPage"
-          :page-size=10
+          :page-size=limit
           :page-sizes="[5, 10, 20, 30]"
           layout="total, sizes, prev, pager, next, jumper"
           :total=totalUser>
@@ -302,6 +302,12 @@
   .userQuery {
     .list_wrap {
       margin 0 auto
+    }
+    .el-button,.el-button--default{
+    
+    }
+    .mar{
+      padding-right 20px
     }
   }
 </style>

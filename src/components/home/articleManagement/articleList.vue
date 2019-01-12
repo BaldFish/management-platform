@@ -2,7 +2,8 @@
   <div class="articleList">
     <div class="list_wrap">
       <div>
-        <h3>文章管理</h3>
+        <h3 style="font-size: 20px;font-weight: bold;color: #000000">文章管理</h3>
+        <br>
         <span>分类：</span>
         <el-select v-model="select_value" clearable placeholder="请选择" @change="changeValue">
           <el-option v-for="item in selectData" :key="item.category_code" :label="item.category_name" :value="item.essay_category_num">
