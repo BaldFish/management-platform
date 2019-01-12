@@ -5,311 +5,119 @@
         <tbody>
         <tr>
           <td>手机号：</td>
-          <td>{{18611471680}}</td>
+          <td>{{userInfo.phone}}</td>
           <td>账号注册日期：</td>
-          <td>{{"2018-01-03 10:10:04"}}</td>
+          <td>{{userInfo.created_at}}</td>
           <td></td>
         </tr>
         <tr>
           <td>钱包地址1（默认）：</td>
-          <td>{{"0x79f213213879374126474953254987"}}</td>
+          <td>{{userInfo.wallet_address}}</td>
           <td>钱包地址2：</td>
-          <td>{{"0x79f213213879374126474953254987"}}</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
           <td>姓名：</td>
-          <td>{{"陈逻"}}</td>
+          <td>{{userInfo.realname}}</td>
           <td>邮箱：</td>
-          <td>{{"luo.chen@cnlaunch.com"}}</td>
+          <td>{{userInfo.email}}</td>
           <td></td>
         </tr>
         <tr>
           <td>身份证号：</td>
-          <td>{{430751199907130033}}</td>
+          <td>{{userInfo.idcard}}</td>
           <td>认证时间：</td>
-          <td>{{"2018-11-21 10:10:04"}}</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
           <td>行驶证：</td>
-          <td>{{"VLS3430483248390438"}}</td>
+          <td>{{userInfo.driverlicense}}</td>
           <td>认证时间：</td>
-          <td>{{"2018-11-21 10:10:04"}}</td>
+          <td>{{""}}</td>
           <td><a href="" target="_blank">查看照片</a></td>
         </tr>
         <tr>
           <td>车牌号：</td>
-          <td>{{"京593849"}}</td>
+          <td>{{""}}</td>
           <td>车辆类型：</td>
-          <td>{{"普通二轮摩托车"}}</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
           <td>所有人：</td>
-          <td>{{"孙振平"}}</td>
+          <td>{{""}}</td>
           <td>地址：</td>
-          <td>{{"山东省高密市姜庄镇隋家屯村"}}</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
           <td>品牌型号：</td>
-          <td>{{"建设派JS110-8"}}</td>
+          <td>{{""}}</td>
           <td>使用性质：</td>
-          <td>{{"非营运"}}</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
-          <td>发送机号码：</td>
-          <td>{{"05L32751"}}</td>
+          <td>发动机号码：</td>
+          <td>{{""}}</td>
           <td>车辆识别代号：</td>
-          <td>{{"LAPXCHLU450022451"}}</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
           <td>注册登记日期：</td>
-          <td>{{"2006-01-06"}}</td>
+          <td>{{""}}</td>
           <td>发证日期：</td>
-          <td>{{"2006-01-06"}}</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
           <td>驾驶证：</td>
-          <td>{{"VLS3430483248390438"}}</td>
+          <td>{{""}}</td>
           <td>认证时间：</td>
-          <td>{{"2018-11-21 10:10:04"}}</td>
+          <td>{{""}}</td>
           <td><a href="" target="_blank">查看照片</a></td>
         </tr>
         <tr>
           <td>支付宝账号：</td>
-          <td>{{"18611471680"}}</td>
+          <td>{{userInfo.alipay}}</td>
           <td>绑定时间：</td>
-          <td>{{"2018-11-21 10:10:04"}}</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
           <td>居住地：</td>
-          <td>{{"北京市昌平区"}}</td>
+          <td>{{userInfo.residence}}</td>
           <td>学历：</td>
-          <td>{{"高中"}}</td>
+          <td>{{userInfo.degree}}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>职业：</td>
+          <td>{{userInfo.career}}</td>
+          <td>用户来源：</td>
+          <td>{{""}}</td>
           <td></td>
         </tr>
         <tr>
           <td>职业认证：</td>
-          <td>{{"技师"}}</td>
+          <td>{{userInfo.rolename}}</td>
           <td>绑定时间：</td>
-          <td>{{"2018-11-21 10:10:04"}}</td>
-          <td><a href="" target="_blank">查看照片</a></td>
-        </tr>
-        <tr>
-          <td>用户来源：</td>
-          <td>{{"汽诊APP"}}</td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{""}}</td>
+          <td>
+            <a :href="userInfo.roleimg.img_front" target="_blank">查看照片</a>
+          </td>
         </tr>
         </tbody>
       </table>
     </div>
     <div class="user-account">
-      <!--外层tab-->
       <template>
-        <el-tabs v-model="outerActiveName" @tab-click="outerTabClick">
-          <el-tab-pane label="钱包地址1" name="walletAddress_01">
-            <h3>账户金额</h3>
-            <table class="account-amount">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>元积分</th>
-                  <th>广告豆</th>
-                  <th>元豆豆</th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <th>金额</th>
-                <td>{{200.00}}</td>
-                <td>{{20.00}}</td>
-                <td>{{0.00}}</td>
-              </tr>
-              </tbody>
-            </table>
-            <!--里层tab-->
-            <template>
-              <el-tabs v-model="innerActiveName" @tab-click="innerTabClick" style="margin-left: 20px">
-                <el-tab-pane label="元积分" name="yuanPoints">
-
-                  <!--筛选-->
-                  <el-radio-group v-model="tabPosition" style="margin-bottom: 30px;float: left;">
-                    <el-radio-button label="all">全部</el-radio-button>
-                    <el-radio-button label="recharge">充值</el-radio-button>
-                    <el-radio-button label="consume">消费</el-radio-button>
-                    <el-radio-button label="transfer">转账</el-radio-button>
-                  </el-radio-group>
-                  <div class="time-query">
-                    <span>创建时间：</span>
-                    <el-date-picker
-                      v-model="value6"
-                      type="daterange"
-                      range-separator="~"
-                      start-placeholder="开始日期"
-                      end-placeholder="结束日期">
-                    </el-date-picker>
-                    <el-button>搜索</el-button>
-                  </div>
-                  <!--表格-->
-                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="姓名" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="金额" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="占比" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                  <div class="block" style="text-align:center">
-                    <el-pagination
-                      @size-change="handleSizeChange"
-                      @current-change="handleCurrentChange"
-                      :current-page.sync="currentPage"
-                      :page-size=5
-                      :page-sizes="[5, 10, 20, 30]"
-                      layout="total, sizes, prev, pager, next, jumper"
-                      :total=total>
-                    </el-pagination>
-                  </div>
-
-                </el-tab-pane>
-                <el-tab-pane label="广告豆" name="advBeans">
-
-                  <!--筛选-->
-                  <el-radio-group v-model="tabPosition" style="margin-bottom: 30px;float: left;">
-                    <el-radio-button label="all">全部</el-radio-button>
-                    <el-radio-button label="recharge">充值</el-radio-button>
-                    <el-radio-button label="consume">消费</el-radio-button>
-                    <el-radio-button label="transfer">转账</el-radio-button>
-                  </el-radio-group>
-                  <div class="time-query">
-                    <span>创建时间：</span>
-                    <el-date-picker
-                      v-model="value6"
-                      type="daterange"
-                      range-separator="~"
-                      start-placeholder="开始日期"
-                      end-placeholder="结束日期">
-                    </el-date-picker>
-                    <el-button>搜索</el-button>
-                  </div>
-                  <!--表格-->
-                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="姓名" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="金额" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="占比" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                  <div class="block" style="text-align:center">
-                    <el-pagination
-                      @size-change="handleSizeChange"
-                      @current-change="handleCurrentChange"
-                      :current-page.sync="currentPage"
-                      :page-size=5
-                      :page-sizes="[5, 10, 20, 30]"
-                      layout="total, sizes, prev, pager, next, jumper"
-                      :total=total>
-                    </el-pagination>
-                  </div>
-
-                </el-tab-pane>
-                <el-tab-pane label="元豆豆" name="yuanBeans">
-
-                  <!--筛选-->
-                  <el-radio-group v-model="tabPosition" style="margin-bottom: 30px;float: left;">
-                    <el-radio-button label="all">全部</el-radio-button>
-                    <el-radio-button label="recharge">充值</el-radio-button>
-                    <el-radio-button label="consume">消费</el-radio-button>
-                    <el-radio-button label="transfer">转账</el-radio-button>
-                  </el-radio-group>
-                  <div class="time-query">
-                    <span>创建时间：</span>
-                    <el-date-picker
-                      v-model="value6"
-                      type="daterange"
-                      range-separator="~"
-                      start-placeholder="开始日期"
-                      end-placeholder="结束日期">
-                    </el-date-picker>
-                    <el-button>搜索</el-button>
-                  </div>
-                  <!--表格-->
-                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.essay_num }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="姓名" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.category_name }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="金额" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="占比" align="center">
-                      <template slot-scope="scope">
-                        <span>{{ scope.row.show_time }}</span>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                  <div class="block" style="text-align:center">
-                    <el-pagination
-                      @size-change="handleSizeChange"
-                      @current-change="handleCurrentChange"
-                      :current-page.sync="currentPage"
-                      :page-size=5
-                      :page-sizes="[5, 10, 20, 30]"
-                      layout="total, sizes, prev, pager, next, jumper"
-                      :total=total>
-                    </el-pagination>
-                  </div>
-
-                </el-tab-pane>
-              </el-tabs>
-            </template>
-          </el-tab-pane>
-          <el-tab-pane label="钱包地址2" name="walletAddress_02">
+        <!--第1层tab-->
+        <el-tabs v-model="type1" @tab-click="type1TabClick">
+          <div>
             <h3>账户金额</h3>
             <table class="account-amount">
               <thead>
@@ -323,22 +131,227 @@
               <tbody>
               <tr>
                 <th>金额</th>
-                <td>{{320.00}}</td>
-                <td>{{50.00}}</td>
-                <td>{{60.00}}</td>
+                <td>{{200.00}}</td>
+                <td>{{20.00}}</td>
+                <td>{{0.00}}</td>
               </tr>
               </tbody>
             </table>
-            <!--里层tab-->
+          </div>
+          <!--钱包地址1-->
+          <el-tab-pane label="钱包地址1" name="1">
             <template>
-              <el-tabs v-model="innerActiveName" @tab-click="innerTabClick" style="margin-left: 20px">
-                <el-tab-pane label="元积分" name="yuanPoints">元积分</el-tab-pane>
-                <el-tab-pane label="广告豆" name="advBeans">广告豆</el-tab-pane>
-                <el-tab-pane label="元豆豆" name="yuanBeans">元豆豆</el-tab-pane>
+              <!--第2层tab-->
+              <el-tabs v-model="type2" @tab-click="type2TabClick" style="margin-left: 20px">
+                <!--第3层tab筛选和搜索-->
+                <el-radio-group v-model="type3" style="margin-bottom: 30px;float: left;" @change="type3TabClick">
+                  <el-radio-button label="1">全部</el-radio-button>
+                  <el-radio-button label="2">充值</el-radio-button>
+                  <el-radio-button label="3">消费</el-radio-button>
+                  <el-radio-button label="4">转账</el-radio-button>
+                </el-radio-group>
+                <div class="time-query">
+                  <span>创建时间：</span>
+                  <el-date-picker
+                    v-model="time"
+                    type="daterange"
+                    range-separator="~"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期">
+                  </el-date-picker>
+                  <el-button @click="queryUserInfo">搜索</el-button>
+                </div>
+                <el-tab-pane label="元积分" name="1">
+                  <!--表格-->
+                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
+                    <el-table-column label="钱包地址" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_num }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="姓名" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.category_name }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="金额" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="占比" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.show_time }}</span>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="广告豆" name="2">
+                  <!--表格-->
+                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
+                    <el-table-column label="钱包地址" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_num }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="姓名" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.category_name }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="金额" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="占比" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.show_time }}</span>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="元豆豆" name="3">
+                  <!--表格-->
+                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
+                    <el-table-column label="钱包地址" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_num }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="姓名" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.category_name }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="金额" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="占比" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.show_time }}</span>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </el-tab-pane>
               </el-tabs>
             </template>
           </el-tab-pane>
-          <!--<el-tab-pane label="资产" name="asset">资产</el-tab-pane>-->
+          <!--钱包地址2-->
+          <el-tab-pane label="钱包地址2" name="2">
+            <template>
+              <!--第2层tab-->
+              <el-tabs v-model="type2" @tab-click="type2TabClick" style="margin-left: 20px">
+                <!--第3层tab筛选和搜索-->
+                <el-radio-group v-model="type3" style="margin-bottom: 30px;float: left;" @change="type3TabClick">
+                  <el-radio-button label="1">全部</el-radio-button>
+                  <el-radio-button label="2">充值</el-radio-button>
+                  <el-radio-button label="3">消费</el-radio-button>
+                  <el-radio-button label="4">转账</el-radio-button>
+                </el-radio-group>
+                <div class="time-query">
+                  <span>创建时间：</span>
+                  <el-date-picker
+                    v-model="time"
+                    type="daterange"
+                    range-separator="~"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期">
+                  </el-date-picker>
+                  <el-button>搜索</el-button>
+                </div>
+                <el-tab-pane label="元积分" name="1">
+                  <!--表格-->
+                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
+                    <el-table-column label="钱包地址" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_num }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="姓名" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.category_name }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="金额" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="占比" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.show_time }}</span>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="广告豆" name="2">
+                  <!--表格-->
+                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
+                    <el-table-column label="钱包地址" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_num }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="姓名" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.category_name }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="金额" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="占比" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.show_time }}</span>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="元豆豆" name="3">
+                  <!--表格-->
+                  <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
+                    <el-table-column label="钱包地址" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_num }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="姓名" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.category_name }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="金额" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.essay_status===1?"有效":"无效" }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="占比" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.show_time }}</span>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </el-tab-pane>
+              </el-tabs>
+            </template>
+          </el-tab-pane>
+          <!--分页-->
+          <div class="block" style="text-align:center">
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page.sync="currentPage"
+              :page-size=5
+              :page-sizes="[5, 10, 20, 30]"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total=total>
+            </el-pagination>
+          </div>
         </el-tabs>
       </template>
     </div>
@@ -351,69 +364,96 @@
     components: {},
     data() {
       return {
-        outerActiveName: 'walletAddress_01',
-        innerActiveName: 'yuanPoints',
-        tabPosition: 'all',
-        value6:"",
-
+        userId: "",
+        type1: "1",
+        type2: "1",
+        type3: "1",
+        time: ["", ""],
+        userInfo: {
+          roleimg: {},
+        },
         tableData: [],
         currentPage: 1,
         total: 10,
-        page: 0,
-        limit: 5
+        page: 1,
+        limit: 10
       }
     },
     created() {
     },
     beforeMount() {
+      this.userId = JSON.parse(sessionStorage.getItem("clickInfo"))._id;
+      this.queryUserInfo();
     },
     mounted() {
-      //获取文章列表
-      this.getArticleList()
     },
-    watch: {},
+    watch: {
+      time: function () {
+        if (this.time === null) {
+          this.time = ["", ""]
+        }
+      }
+    },
     computed: {},
     methods: {
-      outerTabClick(tab, event) {
-        console.log(tab, event);
-        this.innerActiveName= 'yuanPoints';
-        this.tabPosition= 'all';
-        this.value6= '';
-        this.currentPage= 1;
-        this.total= 10;
-        this.page= 0;
-        this.limit= 5;
-        this.getArticleList()
+      //查询用户基本信息和交易流水
+      queryUserInfo() {
+        let data = {
+          user_id: this.userId,
+          type1: this.type1,
+          type2: this.type2,
+          type3: this.type3,
+          start: this.time[0],
+          end: this.time[1],
+          page: this.page,
+          limit: this.limit,
+        };
+        this.$axios({
+          method: "POST",
+          url: `${this.$baseURL}/v1/backstage/users/findid`,
+          data: this.$querystring.stringify(data),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
+        }).then(res => {
+          res.data.user.roleimg = JSON.parse(res.data.user.roleimg);
+          res.data.user.created_at=this.$utils.formatDate(new Date(res.data.user.created_at), "yyyy-MM-dd hh:mm:ss");
+          this.userInfo = res.data.user;
+          console.log(res.data)
+        }).catch(error => {
+          console.log(error)
+        })
       },
-      innerTabClick(tab, event) {
-        console.log(tab, event);
-        this.tabPosition= 'all';
-        this.value6= '';
-        this.currentPage= 1;
-        this.total= 10;
-        this.page= 0;
-        this.limit= 5;
-        this.getArticleList()
+      //点击第1层选项卡
+      type1TabClick(tab) {
+        this.page = 1;
+        this.type1 = tab.name;
+        this.type2 = "1";
+        this.type3 = "1";
+        this.queryUserInfo();
       },
+      //点击第2层选项卡
+      type2TabClick(tab) {
+        this.page = 1;
+        this.type2 = tab.name;
+        this.type3 = "1";
+        this.queryUserInfo();
+      },
+      //点击第3层选项卡
+      type3TabClick(tab) {
+        this.page = 1;
+        this.type3 = tab;
+        this.queryUserInfo();
+      },
+      //更改每页显示条数
       handleSizeChange(val) {
         this.limit = val;
-        this.getArticleList()
+        this.queryUserInfo();
       },
+      //切换分页
       handleCurrentChange(val) {
-        this.page = val - 1;
-        this.getArticleList()
-      },
-      getArticleList() {
-        this.$axios({
-          method: "GET",
-          url: `${this.$baseURL}/v1/essay?page=${this.page}&limit=${this.limit}&essay_catg=${this.select_value}`
-        }).then(res => {
-          this.tableData = res.data.info;
-          this.total = res.data.count;
-        })
-          .catch(error => {
-            this.tableData = [];
-          });
+        this.page = val;
+        this.queryUserInfo();
       },
     },
   }
@@ -421,38 +461,46 @@
 
 <style scoped lang="stylus">
   .userDetails {
-    .user-info{
+    .user-info {
       margin: 20px
-      table{
-        td{
+      
+      table {
+        td {
           width: 300px
           height: 40px
           line-height 40px
-          border:1px solid #ebeef5
+          border: 1px solid #ebeef5
           text-align center
-          a{
+          
+          a {
             color #6e6f77
           }
         }
       }
     }
-    .user-account{
+    
+    .user-account {
       margin-bottom 50px
-      h3{
+      
+      h3 {
         margin: 10px 20px 20px 20px
       }
-      .account-amount{
+      
+      .account-amount {
         margin-bottom 20px
-        th,td{
+        
+        th, td {
           width: 100px
           height: 30px
           line-height 30px
-          border:1px solid #ebeef5
+          border: 1px solid #ebeef5
           text-align center
         }
       }
-      .time-query{
+      
+      .time-query {
         float right
+        padding-right 30px
       }
     }
   }
