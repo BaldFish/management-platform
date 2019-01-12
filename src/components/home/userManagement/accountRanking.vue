@@ -2,7 +2,8 @@
   <div class="accountRanking">
     <div class="list_wrap">
       <div>
-        <h3>账户金额排行</h3>
+        <h3 style="font-size: 20px;font-weight: bold;color: #000;">账户金额排行</h3>
+        <br>
         <template>
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="元积分金额排行" name="first">
@@ -33,7 +34,7 @@
                   @size-change="handleSizeChange_yuanPoint"
                   @current-change="handleCurrentChange_yuanPoint"
                   :current-page.sync="currentPage_yuanPoint"
-                  :page-size=5
+                  :page-size=10
                   :page-sizes="[5, 10, 20, 30]"
                   layout="total, sizes, prev, pager, next, jumper"
                   :total=yuanPointTotal>
@@ -68,7 +69,7 @@
                   @size-change="handleSizeChange_advBeans"
                   @current-change="handleCurrentChange_advBeans"
                   :current-page.sync="currentPage_advBeans"
-                  :page-size=5
+                  :page-size=10
                   :page-sizes="[5, 10, 20, 30]"
                   layout="total, sizes, prev, pager, next, jumper"
                   :total=advBeansTotal>
@@ -103,7 +104,7 @@
                   @size-change="handleSizeChange_yuanBeans"
                   @current-change="handleCurrentChange_yuanBeans"
                   :current-page.sync="currentPage_yuanBeans"
-                  :page-size=5
+                  :page-size=10
                   :page-sizes="[5, 10, 20, 30]"
                   layout="total, sizes, prev, pager, next, jumper"
                   :total=yuanBeansTotal>
@@ -128,19 +129,19 @@
         yuanPointsList: [],
         yuanPointTotal: 10,
         page_yuanj: 1,
-        limit_yuanj: 5,
+        limit_yuanj: 10,
         currentPage_yuanPoint: 1,
         //广告豆
         advBeansList: [],
         advBeansTotal: 10,
         page_yuand: 1,
-        limit_yuand: 5,
+        limit_yuand: 10,
         currentPage_advBeans: 1,
         //元豆豆
         yuanBeansList: [],
         yuanBeansTotal: 10,
         page_ydd: 1,
-        limit_ydd: 5,
+        limit_ydd: 10,
         currentPage_yuanBeans: 1,
       }
     },
@@ -152,7 +153,7 @@
       this.activeName = "first";
       //获取元积分列表
       this.page_yuanj = 1;
-      this.limit_yuanj = 5;
+      this.limit_yuanj = 10;
       this.getYuanPointsList()
     },
     watch: {},
@@ -160,16 +161,16 @@
     methods: {
       handleClick(tab, event) {
         if(tab.name == "first"){
-          this.page_yuanj = 1;
-          this.limit_yuanj = 5;
+          //this.page_yuanj = 1;
+          //this.limit_yuanj = 5;
           this.getYuanPointsList()
         }else if(tab.name == "second"){
-          this.page_yuand = 1;
-          this.limit_yuand = 5;
+          //this.page_yuand = 1;
+          //this.limit_yuand = 5;
           this.getAdvBeansList()
         }else if(tab.name == "third"){
-          this.page_ydd = 1;
-          this.limit_ydd = 5;
+          //this.page_ydd = 1;
+          //this.limit_ydd = 5;
           this.getYuanBeansList()
         }
       },
