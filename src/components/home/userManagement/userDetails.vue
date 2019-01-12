@@ -391,14 +391,12 @@
         if (this.time === null) {
           this.time = ""
         }
-        console.log(this.time)
       }
     },
     computed: {},
     methods: {
       //查询用户基本信息和交易流水
       queryUserInfo() {
-        
         let data = {
           user_id: this.userId,
           type1: this.type1,

@@ -134,7 +134,6 @@
         if(this.time===null){
           this.time=""
         }
-        console.log(this.time)
       }
     },
     computed: {
