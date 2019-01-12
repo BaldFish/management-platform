@@ -254,7 +254,7 @@
                   <span>创建时间：</span>
                   <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
                                   end-placeholder="结束日期"
-                                  value-format="yyyy-MM-dd" default-value="2018-01-01">
+                                  value-format="yyyy-MM-dd" default-value="2019-01-01">
                   </el-date-picker>
                   <el-button @click="queryUserInfo">搜索</el-button>
                 </div>
