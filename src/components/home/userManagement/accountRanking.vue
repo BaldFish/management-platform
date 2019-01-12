@@ -160,16 +160,16 @@
     methods: {
       handleClick(tab, event) {
         if(tab.name == "first"){
-          this.page_yuanj = 1;
-          this.limit_yuanj = 5;
+          //this.page_yuanj = 1;
+          //this.limit_yuanj = 5;
           this.getYuanPointsList()
         }else if(tab.name == "second"){
-          this.page_yuand = 1;
-          this.limit_yuand = 5;
+          //this.page_yuand = 1;
+          //this.limit_yuand = 5;
           this.getAdvBeansList()
         }else if(tab.name == "third"){
-          this.page_ydd = 1;
-          this.limit_ydd = 5;
+          //this.page_ydd = 1;
+          //this.limit_ydd = 5;
           this.getYuanBeansList()
         }
       },
