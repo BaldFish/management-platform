@@ -8,22 +8,22 @@
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="元积分金额排行" name="first">
               <el-table :data="yuanPointsList" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                <el-table-column label="钱包地址" align="center" width="500">
+                <el-table-column label="钱包地址" align="center" min-width="400">
                   <template slot-scope="scope">
                     <span>{{ scope.row.wallet_address }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="姓名" align="center">
+                <el-table-column label="姓名" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{ scope.row.realname }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="金额" align="center">
+                <el-table-column label="金额" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{ scope.row.yuanj }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="占比" align="center">
+                <el-table-column label="占比" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{(scope.row.rate *100).toFixed(2) }}%</span>
                   </template>
@@ -43,22 +43,22 @@
             </el-tab-pane>
             <el-tab-pane label="广告豆金额排行" name="second">
               <el-table :data="advBeansList" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                <el-table-column label="钱包地址" align="center" width="500">
+                <el-table-column label="钱包地址" align="center" min-width="400">
                   <template slot-scope="scope">
                     <span>{{ scope.row.wallet_address }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="姓名" align="center">
+                <el-table-column label="姓名" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{ scope.row.realname }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="金额" align="center">
+                <el-table-column label="金额" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{ scope.row.yuand }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="占比" align="center">
+                <el-table-column label="占比" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{(scope.row.rate *100).toFixed(2) }}%</span>
                   </template>
@@ -78,22 +78,22 @@
             </el-tab-pane>
             <el-tab-pane label="元豆豆金额排行" name="third">
               <el-table :data="yuanBeansList" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                <el-table-column label="钱包地址" align="center" width="500">
+                <el-table-column label="钱包地址" align="center" min-width="400">
                   <template slot-scope="scope">
                     <span>{{ scope.row.wallet_address }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="姓名" align="center">
+                <el-table-column label="姓名" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{ scope.row.realname }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="金额" align="center">
+                <el-table-column label="金额" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{ scope.row.ydd }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="占比" align="center">
+                <el-table-column label="占比" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{(scope.row.rate *100).toFixed(2) }}%</span>
                   </template>

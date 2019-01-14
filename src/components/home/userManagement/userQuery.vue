@@ -40,22 +40,22 @@
             <span>{{ scope.row.phone }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="真实姓名" align="center">
+        <el-table-column label="真实姓名" align="center" min-width="100">
           <template slot-scope="scope">
             <span>{{ scope.row.realname }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="身份证号" align="center" width="120">
+        <el-table-column label="身份证号" align="center" min-width="120">
           <template slot-scope="scope">
             <span>{{ scope.row.idcard}}</span>
           </template>
         </el-table-column>
-        <el-table-column label="钱包地址" align="center" width="130">
+        <el-table-column label="钱包地址" align="center" min-width="130">
           <template slot-scope="scope">
             <span>{{ scope.row.wallet_address }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="注册时间" align="center" width="160">
+        <el-table-column label="注册时间" align="center" min-width="160">
           <template slot-scope="scope">
             <span>{{ scope.row.created_at }}</span>
           </template>

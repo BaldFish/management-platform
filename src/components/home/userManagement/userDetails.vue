@@ -163,22 +163,22 @@
                 <el-tab-pane label="元积分" name="1">
                   <!--表格-->
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
+                    <el-table-column label="钱包地址" align="center" min-width="400">
                       <template slot-scope="scope">
                         <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="创建时间" align="center">
+                    <el-table-column label="创建时间" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="金额" align="center">
+                    <el-table-column label="金额" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="备注" align="center">
+                    <el-table-column label="备注" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.rule }}</span>
                       </template>
@@ -188,22 +188,22 @@
                 <el-tab-pane label="广告豆" name="2">
                   <!--表格-->
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
+                    <el-table-column label="钱包地址" align="center" min-width="400">
                       <template slot-scope="scope">
                         <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="创建时间" align="center">
+                    <el-table-column label="创建时间" align="center"  min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="金额" align="center">
+                    <el-table-column label="金额" align="center"  min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="备注" align="center">
+                    <el-table-column label="备注" align="center"  min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.rule }}</span>
                       </template>
@@ -213,22 +213,22 @@
                 <el-tab-pane label="元豆豆" name="3">
                   <!--表格-->
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
+                    <el-table-column label="钱包地址" align="center" min-width="400">
                       <template slot-scope="scope">
                         <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="创建时间" align="center">
+                    <el-table-column label="创建时间" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="金额" align="center">
+                    <el-table-column label="金额" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="备注" align="center">
+                    <el-table-column label="备注" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.rule }}</span>
                       </template>
@@ -261,22 +261,22 @@
                 <el-tab-pane label="元积分" name="1">
                   <!--表格-->
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
+                    <el-table-column label="钱包地址" align="center" min-width="400">
                       <template slot-scope="scope">
                         <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="创建时间" align="center">
+                    <el-table-column label="创建时间" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="金额" align="center">
+                    <el-table-column label="金额" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="备注" align="center">
+                    <el-table-column label="备注" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.rule }}</span>
                       </template>
@@ -286,22 +286,22 @@
                 <el-tab-pane label="广告豆" name="2">
                   <!--表格-->
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
+                    <el-table-column label="钱包地址" align="center" min-width="400">
                       <template slot-scope="scope">
                         <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="创建时间" align="center">
+                    <el-table-column label="创建时间" align="center"  min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="金额" align="center">
+                    <el-table-column label="金额" align="center"  min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="备注" align="center">
+                    <el-table-column label="备注" align="center"  min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.rule }}</span>
                       </template>
@@ -311,22 +311,22 @@
                 <el-tab-pane label="元豆豆" name="3">
                   <!--表格-->
                   <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-                    <el-table-column label="钱包地址" align="center">
+                    <el-table-column label="钱包地址" align="center" min-width="400">
                       <template slot-scope="scope">
                         <span>{{ scope.row.walletaddress }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="创建时间" align="center">
+                    <el-table-column label="创建时间" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.updated_at }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="金额" align="center">
+                    <el-table-column label="金额" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.value }}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column label="备注" align="center">
+                    <el-table-column label="备注" align="center" min-width="150">
                       <template slot-scope="scope">
                         <span>{{ scope.row.rule }}</span>
                       </template>
@@ -425,8 +425,7 @@
           this.totalGGD = res.data.totalyuand;
           res.data.certification.res.created_at = this.$utils.formatDate(new Date(res.data.certification.res.created_at), "yyyy-MM-dd hh:mm:ss");
           res.data.certification.res.updated_at = this.$utils.formatDate(new Date(res.data.certification.res.updated_at), "yyyy-MM-dd hh:mm:ss");
-          this.userInfo1 = res.data.certification.res
-          console.log(this.userInfo1)
+          this.userInfo1 = res.data.certification.res;
           let that = this;
           res.data.transction.data.txn.forEach(function (item) {
             item.updated_at = that.$utils.formatDate(new Date(item.updated_at), "yyyy-MM-dd hh:mm:ss");
