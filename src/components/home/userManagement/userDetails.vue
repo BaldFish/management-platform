@@ -38,7 +38,7 @@
           <td style="color: red">{{userInfo1.red_chapter}}</td>
           <td>认证时间：</td>
           <td>{{userInfo1.updated_at}}</td>
-          <td><a :href="userInfo1.url" target="_blank">查看照片</a></td>
+          <td><a :href="userInfo1.url" target="_blank" v-if="userInfo.carinfo">查看照片</a></td>
         </tr>
         <tr>
           <td>车牌号：</td>
