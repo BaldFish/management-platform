@@ -109,7 +109,7 @@
           <td>绑定时间：</td>
           <td>{{""}}</td>
           <td>
-            <a :href="userInfo.roleimg.img_front" target="_blank">查看照片</a>
+            <a :href="userInfo.roleimg" target="_blank" v-if="userInfo.roleimg">查看照片</a>
           </td>
         </tr>
         </tbody>
@@ -365,9 +365,7 @@
         type2: "1",
         type3: "1",
         time: "",
-        userInfo: {
-          roleimg: {},
-        },
+        userInfo: {},
         userInfo1: {},
         totalYJF: "",
         totalYDD: "",
@@ -416,7 +414,6 @@
             'Content-Type': 'application/x-www-form-urlencoded',
           }
         }).then(res => {
-          res.data.user.roleimg = JSON.parse(res.data.user.roleimg);
           res.data.user.created_at = this.$utils.formatDate(new Date(res.data.user.created_at), "yyyy-MM-dd hh:mm:ss");
           this.userInfo = res.data.user;
           this.total = res.data.transction.data.count;
