@@ -80,7 +80,7 @@
           <td>{{userInfo.driverlicense}}</td>
           <td>认证时间：</td>
           <td>{{""}}</td>
-          <td><a href="" target="_blank">查看照片</a></td>
+          <td><a href="javascript:void(0)" target="_blank">查看照片</a></td>
         </tr>
         <tr>
           <td>支付宝账号：</td>
