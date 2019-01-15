@@ -35,7 +35,7 @@
         </el-table-column>
         <el-table-column label="编号" align="center" type="index" width="50">
         </el-table-column>
-        <el-table-column label="手机号码" align="center" width="120">
+        <el-table-column label="手机号码" align="center" width="150">
           <template slot-scope="scope">
             <span>{{ scope.row.phone }}</span>
           </template>
