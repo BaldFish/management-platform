@@ -17,7 +17,7 @@
         <span>注册时间：</span>
         <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
                         end-placeholder="结束日期"
-                        value-format="yyyy-MM-dd" default-value="2019-01-01">
+                        :default-time="['00:00:00', '23:59:59']">
         </el-date-picker>
         <el-button @click="btnSearchUserList" style="position: absolute;left: 930px">搜索</el-button>
         <br> <br>
@@ -132,7 +132,7 @@
     watch: {
       time: function () {
         if(this.time===null){
-          this.time=""
+          this.time=["",""]
         }
       }
     },
@@ -187,8 +187,8 @@
           realname: this.name,
           idcard: this.idCard,
           wallet_address: this.walletAddress,
-          time1: this.time[0],
-          time2: this.time[1],
+          time1: new Date(this.time[0]).toUTCString()==="Invalid Date"?"":new Date(this.time[0]).toUTCString(),
+          time2: new Date(this.time[1]).toUTCString()==="Invalid Date"?"":new Date(this.time[1]).toUTCString(),
         };
         this.$axios({
           method: "POST",
@@ -225,8 +225,8 @@
           realname: this.name,
           idcard: this.idCard,
           wallet_address: this.walletAddress,
-          time1: this.time[0],
-          time2: this.time[1],
+          time1: new Date(this.time[0]).toUTCString()==="Invalid Date"?"":new Date(this.time[0]).toUTCString(),
+          time2: new Date(this.time[1]).toUTCString()==="Invalid Date"?"":new Date(this.time[1]).toUTCString(),
         };
         this.$axios({
           method: "POST",

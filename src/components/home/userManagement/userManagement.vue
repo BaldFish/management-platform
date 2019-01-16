@@ -20,12 +20,12 @@
               <el-menu-item index="accountRanking">
                 <router-link to="/home/userManagement/accountRanking">账户金额排行</router-link>
               </el-menu-item>
-              <el-menu-item index="yuanDouRecharge">
+              <!--<el-menu-item index="yuanDouRecharge">
                 <router-link to="/home/userManagement/yuanDouRecharge">元豆充值</router-link>
               </el-menu-item>
               <el-menu-item index="assetQuery">
                 <router-link to="/home/userManagement/assetQuery">资产查询</router-link>
-              </el-menu-item>
+              </el-menu-item>-->
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
