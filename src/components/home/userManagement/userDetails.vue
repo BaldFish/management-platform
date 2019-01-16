@@ -30,7 +30,7 @@
           <td>身份证号：</td>
           <td>{{userInfo.idcard}}</td>
           <td>认证时间：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo1.personcreated_at}}</td>
           <td></td>
         </tr>
         <tr>
@@ -420,6 +420,7 @@
           this.totalYJF = res.data.totalyuanj;
           this.totalYDD = res.data.totalydd;
           this.totalGGD = res.data.totalyuand;
+          res.data.certification.res.personcreated_at = this.$utils.formatDate(new Date(res.data.certification.res.personcreated_at), "yyyy-MM-dd hh:mm:ss");
           res.data.certification.res.created_at = this.$utils.formatDate(new Date(res.data.certification.res.created_at), "yyyy-MM-dd hh:mm:ss");
           res.data.certification.res.updated_at = this.$utils.formatDate(new Date(res.data.certification.res.updated_at), "yyyy-MM-dd hh:mm:ss");
           this.userInfo1 = res.data.certification.res;

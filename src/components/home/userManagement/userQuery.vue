@@ -25,8 +25,8 @@
         <span>已实名人数：</span><span class="mar">{{this.totalAuth}}个</span>
         <span>已绑定行驶证人数：</span><span class="mar">{{this.totalCarInfo}}个</span>
         <span>元积分总金额：</span><span class="mar">{{this.totalYJF}}</span>
-        <span>广告豆总金额：</span><span class="mar">{{this.totalYDD}}</span>
-        <span>元豆豆总金额：</span><span class="mar">{{this.totalGGD}}</span>
+        <span>广告豆总金额：</span><span class="mar">{{this.totalGGD}}</span>
+        <span>元豆豆总金额：</span><span class="mar">{{this.totalYDD}}</span>
         <br> <br>
       </div>
       <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange"
