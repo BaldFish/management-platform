@@ -156,7 +156,7 @@
                   <span>创建时间：</span>
                   <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
                                   end-placeholder="结束日期"
-                                  value-format="yyyy-MM-dd" default-value="2019-01-01">
+                                  :default-time="['00:00:00', '23:59:59']">
                   </el-date-picker>
                   <el-button @click="queryUserInfo">搜索</el-button>
                 </div>
@@ -254,7 +254,7 @@
                   <span>创建时间：</span>
                   <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
                                   end-placeholder="结束日期"
-                                  value-format="yyyy-MM-dd" default-value="2019-01-01">
+                                  :default-time="['00:00:00', '23:59:59']">
                   </el-date-picker>
                   <el-button @click="queryUserInfo">搜索</el-button>
                 </div>
@@ -388,7 +388,7 @@
     watch: {
       time: function () {
         if (this.time === null) {
-          this.time = ""
+          this.time = ["",""]
         }
       }
     },
@@ -401,8 +401,8 @@
           type1: this.type1,
           type2: this.type2,
           type3: this.type3,
-          start: this.time[0],
-          end: this.time[1],
+          start: new Date(this.time[0]).toUTCString()==="Invalid Date"?"":new Date(this.time[0]).toUTCString(),
+          end: new Date(this.time[1]).toUTCString()==="Invalid Date"?"":new Date(this.time[1]).toUTCString(),
           page: this.page,
           limit: this.limit,
         };
