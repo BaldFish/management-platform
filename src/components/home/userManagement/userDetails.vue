@@ -431,7 +431,6 @@
             res.data.certification.res.updated_at = this.$utils.formatDate(new Date(res.data.certification.res.updated_at), "yyyy-MM-dd hh:mm:ss");
           }
           this.userInfo1 = res.data.certification.res;
-          console.log(this.userInfo1)
           let that = this;
           res.data.transction.data.txn.forEach(function (item) {
             if(item.updated_at){
