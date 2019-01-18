@@ -77,10 +77,10 @@
         </tr>
         <tr>
           <td>驾驶证：</td>
-          <td>{{userInfo.driverlicense}}</td>
+          <td>{{""}}</td>
           <td>认证时间：</td>
           <td>{{""}}</td>
-          <td><a href="javascript:void(0)" target="_blank">查看照片</a></td>
+          <td><a :href="userInfo.driverlicense" target="_blank" v-if="userInfo.driverlicense">查看照片</a></td>
         </tr>
         <tr>
           <td>支付宝账号：</td>
@@ -364,7 +364,7 @@
         type1: "1",
         type2: "1",
         type3: "1",
-        time: "",
+        time: ["",""],
         userInfo: {},
         userInfo1: {},
         totalYJF: "",
@@ -396,6 +396,7 @@
     methods: {
       //查询用户基本信息和交易流水
       queryUserInfo() {
+        this.page=1;
         let data = {
           user_id: this.userId,
           type1: this.type1,
@@ -420,13 +421,22 @@
           this.totalYJF = res.data.totalyuanj;
           this.totalYDD = res.data.totalydd;
           this.totalGGD = res.data.totalyuand;
-          res.data.certification.res.personcreated_at = this.$utils.formatDate(new Date(res.data.certification.res.personcreated_at), "yyyy-MM-dd hh:mm:ss");
-          res.data.certification.res.created_at = this.$utils.formatDate(new Date(res.data.certification.res.created_at), "yyyy-MM-dd hh:mm:ss");
-          res.data.certification.res.updated_at = this.$utils.formatDate(new Date(res.data.certification.res.updated_at), "yyyy-MM-dd hh:mm:ss");
+          if (res.data.certification.res.personcreated_at) {
+            res.data.certification.res.personcreated_at = this.$utils.formatDate(new Date(res.data.certification.res.personcreated_at), "yyyy-MM-dd hh:mm:ss");
+          }
+          if(res.data.certification.res.created_at){
+            res.data.certification.res.created_at = this.$utils.formatDate(new Date(res.data.certification.res.created_at), "yyyy-MM-dd hh:mm:ss");
+          }
+          if(res.data.certification.res.updated_at){
+            res.data.certification.res.updated_at = this.$utils.formatDate(new Date(res.data.certification.res.updated_at), "yyyy-MM-dd hh:mm:ss");
+          }
           this.userInfo1 = res.data.certification.res;
+          console.log(this.userInfo1)
           let that = this;
           res.data.transction.data.txn.forEach(function (item) {
-            item.updated_at = that.$utils.formatDate(new Date(item.updated_at), "yyyy-MM-dd hh:mm:ss");
+            if(item.updated_at){
+              item.updated_at = that.$utils.formatDate(new Date(item.updated_at), "yyyy-MM-dd hh:mm:ss");
+            }
           });
           this.tableData = res.data.transction.data.txn
         }).catch(error => {
@@ -435,7 +445,7 @@
       },
       //点击第1层选项卡
       type1TabClick(tab) {
-        this.page = 1;
+        //this.page = 1;
         this.type1 = tab.name;
         this.type2 = "1";
         this.type3 = "1";
@@ -443,14 +453,14 @@
       },
       //点击第2层选项卡
       type2TabClick(tab) {
-        this.page = 1;
+        //this.page = 1;
         this.type2 = tab.name;
         this.type3 = "1";
         this.queryUserInfo();
       },
       //点击第3层选项卡
       type3TabClick(tab) {
-        this.page = 1;
+        //this.page = 1;
         this.type3 = tab;
         this.queryUserInfo();
       },
