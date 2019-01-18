@@ -16,7 +16,7 @@
           <td>钱包地址1（默认）：</td>
           <td>{{userInfo.wallet_address}}</td>
           <td>钱包地址2：</td>
-          <td>{{""}}</td>
+          <td>{{userInfo.wallet_address2}}</td>
           <td></td>
         </tr>
         <tr>
