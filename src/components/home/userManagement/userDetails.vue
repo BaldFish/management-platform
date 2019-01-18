@@ -158,7 +158,7 @@
                                   end-placeholder="结束日期"
                                   :default-time="['00:00:00', '23:59:59']">
                   </el-date-picker>
-                  <el-button @click="queryUserInfo">搜索</el-button>
+                  <el-button @click="search">搜索</el-button>
                 </div>
                 <el-tab-pane label="元积分" name="1">
                   <!--表格-->
@@ -256,7 +256,7 @@
                                   end-placeholder="结束日期"
                                   :default-time="['00:00:00', '23:59:59']">
                   </el-date-picker>
-                  <el-button @click="queryUserInfo">搜索</el-button>
+                  <el-button @click="search">搜索</el-button>
                 </div>
                 <el-tab-pane label="元积分" name="1">
                   <!--表格-->
@@ -394,9 +394,13 @@
     },
     computed: {},
     methods: {
+      //点击搜索按钮搜索
+      search(){
+        this.page=1;
+        this.queryUserInfo();
+      },
       //查询用户基本信息和交易流水
       queryUserInfo() {
-        this.page=1;
         let data = {
           user_id: this.userId,
           type1: this.type1,
@@ -444,7 +448,7 @@
       },
       //点击第1层选项卡
       type1TabClick(tab) {
-        //this.page = 1;
+        this.page = 1;
         this.type1 = tab.name;
         this.type2 = "1";
         this.type3 = "1";
@@ -452,14 +456,14 @@
       },
       //点击第2层选项卡
       type2TabClick(tab) {
-        //this.page = 1;
+        this.page = 1;
         this.type2 = tab.name;
         this.type3 = "1";
         this.queryUserInfo();
       },
       //点击第3层选项卡
       type3TabClick(tab) {
-        //this.page = 1;
+        this.page = 1;
         this.type3 = tab;
         this.queryUserInfo();
       },
