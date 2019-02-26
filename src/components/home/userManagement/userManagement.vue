@@ -1,16 +1,11 @@
 <template>
   <div class="userManagement">
     <el-container>
-      <el-aside width="200px" class="">
-        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-          <el-radio-button :label="false">展开</el-radio-button>
-          <el-radio-button :label="true">收起</el-radio-button>
-        </el-radio-group>
-        <el-menu default-active="userQuery" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
-                 unique-opened>
+      <el-aside width="170px" class="nav-aside">
+        <el-menu default-active="userQuery" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+                 unique-opened default-openeds>
           <el-submenu index="userManagement">
             <template slot="title">
-              <i class="el-icon-tickets"></i>
               <span slot="title">用户管理</span>
             </template>
             <el-menu-item-group>
@@ -43,7 +38,6 @@
     components: {},
     data() {
       return {
-        isCollapse: false,
       }
     },
     created() {
@@ -70,10 +64,39 @@
     a {
       color #303133
     }
-  
+
     a.router-link-active {
-      color #409EFF
       text-decoration: none;
+      display: inline-block;
+      width: 128px;
+      height: 35px;
+      line-height: 35px;
+      background-color: #437bff;
+      border-radius: 18px;
+      color: #ffffff;
+    }
+
+    .nav-aside{
+      border-right: solid 2px #dfe6f7;
+      overflow-x:hidden;
     }
   }
+</style>
+<style lang="stylus">
+  .el-menu{
+    border:none
+  }
+  .el-submenu__title{
+    text-align center
+    font-size: 20px;
+    color: #437bff;
+  }
+  .el-submenu .el-menu-item {
+    padding: 0 0;
+    min-width: 170px;
+    text-align: center;
+    font-size 16px
+    padding-left 0 !important
+  }
+
 </style>

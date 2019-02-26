@@ -2,8 +2,9 @@
   <div class="accountRanking">
     <div class="list_wrap">
       <div>
-        <h3 style="font-size: 20px;font-weight: bold;color: #000;">账户金额排行</h3>
-        <br>
+        <div class="content-title">
+          <h3>账户金额排行</h3>
+        </div>
         <template>
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="元积分金额排行" name="first">
@@ -269,6 +270,87 @@
   .accountRanking {
     .list_wrap{
       margin 0 auto
+      .content-title{
+        width: 100%;
+        height: 60px;
+        line-height 60px
+        background-color: #ffffff;
+        border: solid 2px #dfe6f7;
+        border-left: none;
+        font-size: 20px;
+        color: #333333;
+        padding-left:50px
+      }
     }
   }
+</style>
+<style lang="stylus">
+  .el-tabs{
+    border: solid 2px #dfe6f7;
+    border-left: none;
+    margin-top 10px
+    .el-tabs__header{
+      margin: 16px;
+      height: 90px;
+      line-height: 90px;
+      background-color: #f0f3fa;
+      .el-tabs__nav{
+        .el-tabs__active-bar{
+          display none
+        }
+        .el-tabs__item{
+          font-size: 20px;
+          color: #437bff;
+          padding 0
+          margin: 0 60px
+        }
+        .is-active{
+          width: 190px;
+          height: 50px;
+          text-align center
+          line-height 50px
+          background-color: #437bff;
+          border-radius: 25px;
+          color: #ffffff
+        }
+      }
+    }
+    .el-tabs__content{
+      margin: 16px
+      .el-tab-pane{
+        background-color: #f0f3fa;
+        .el-table__header-wrapper{
+          .has-gutter th{
+            background-color: #f0f3fa;
+            font-size: 18px;
+            color: #222222;
+          }
+        }
+        .el-table__body-wrapper{
+          background-color: #f0f3fa;
+          .el-table__body{
+            margin: 15px
+            width: auto !important
+
+            tbody{
+              tr:nth-child(even){
+                background-color: #f0f3fa;
+              }
+            }
+          }
+
+        }
+      }
+      .block{
+        padding: 20px 0;
+      }
+
+
+    }
+  }
+
+  .el-tabs__nav-wrap::after{
+    background-color #f0f3fa;
+  }
+
 </style>
