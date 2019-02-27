@@ -21,7 +21,7 @@
           </Button>
           <DropdownMenu slot="list">
             <DropdownItem>修改密码</DropdownItem>
-            <DropdownItem>退出登录</DropdownItem>
+            <DropdownItem><span @click="logOff">退出登录</span></DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <!--<el-dropdown class="user_info" trigger="click" placement="top" @mouseleave.stop.native="leaveUl" v-if="isLogin">
@@ -48,6 +48,7 @@
       return {
         isLogin: true,
         switchover: false,
+        session_id: "",
       }
     },
     created() {
@@ -58,6 +59,7 @@
       }
     },
     mounted() {
+      this.session_id = JSON.parse(sessionStorage.getItem("myLogin")).id;
     },
     watch: {},
     computed: {},
@@ -70,6 +72,18 @@
       },
       dropOut() {
       },
+      logOff(){
+        this.$axios({
+          method: "DELETE",
+          url: `${this.$baseURL}/v1/backstage/sessions/${this.session_id}`,
+          data: this.$querystring.stringify({})
+        }).then(res => {
+          sessionStorage.removeItem("myLogin");
+          this.$router.push("/login")
+        }).catch(error => {
+          console.log(error)
+        })
+      }
     },
   }
 </script>

@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-  
+
   </div>
 </template>
 
@@ -75,11 +75,11 @@
           username: this.userName,
           password: this.password,
           captcha_id: this.captcha_id,
-          captcha_number: this.captchaCode,
+          captcha_code: this.captchaCode,
         };
         this.$axios({
           method: "POST",
-          url: `${this.$baseURL}/v1/mgt/session`,
+          url: `${this.$baseURL}/v1/backstage/sessions`,
           data: this.$querystring.stringify(loginData)
         }).then(res => {
           sessionStorage.setItem("myLogin", JSON.stringify(res.data));
@@ -103,7 +103,7 @@
     height: 100%
     background: url("../../common/images/bg.jpg") no-repeat center
     background-size 100% 100%
-    
+
     .login-container {
       width: 464px;
       height: 421px;
@@ -111,7 +111,7 @@
       border-radius: 30px;
       margin-top 12%
       margin-left 48%
-      
+
       .content {
         width: 326px
         margin 0 auto
@@ -123,26 +123,26 @@
           text-align center
           margin-bottom 55px
         }
-        
+
         ul {
           input {
             background: none;
             outline: none;
             border: 0px;
           }
-          
+
           li {
             font-size: 14px;
             border-bottom: solid 1px #cecece;
             padding-bottom: 13px;
             margin-top: 13px;
-            
+
             i {
               margin-right 12px
               position: relative
               top: 3px
             }
-            
+
             img {
               width: 91px;
               height: 32px;
@@ -150,7 +150,7 @@
               margin-right 6px
             }
           }
-          
+
           li:nth-child(1) i {
             width: 16px;
             height: 18px;
@@ -158,7 +158,7 @@
             background url("../../common/images/icon_user.png") no-repeat center
             background-size 100% 100%
           }
-          
+
           li:nth-child(2) i {
             width: 16px;
             height: 22px;
@@ -166,7 +166,7 @@
             background url("../../common/images/iicon_password.png") no-repeat center
             background-size 100% 100%
           }
-          
+
           li:nth-child(3) i {
             width: 16px;
             height: 18px;
@@ -175,13 +175,13 @@
             background-size 100% 100%
           }
         }
-        
+
         .checkError {
           font-size: 14px;
           color: #e60000;
           margin: 14px 0 22px 0
         }
-        
+
         .login-btn {
           margin-top 30px
           cursor pointer
@@ -224,10 +224,10 @@
             border-radius 30px
           }
         }
-  
+
       }
     }
-    
-    
+
+
   }
 </style>

@@ -1,94 +1,102 @@
 <template>
   <div class="userQuery">
     <div class="list_wrap">
-      <div style="position: relative">
-        <h3 style="font-size: 20px;font-weight: bold;color: #000000">用户信息</h3>
-        <br>
-        <span>手机号码：</span>
-        <el-input v-model="phone" placeholder="请输入手机号码" clearable style="width: 150px"></el-input>
-        <span>真实姓名：</span>
-        <el-input v-model="name" placeholder="请输入姓名" clearable style="width: 150px"></el-input>
-        <span>身份证号：</span>
-        <el-input v-model="idCard" placeholder="请输入身份证号" clearable style="width: 170px"></el-input>
-        <span>钱包地址：</span>
-        <el-input v-model="walletAddress" placeholder="请输入钱包地址" clearable style="width: 220px"></el-input>
-        <br/>
-        <br/>
-        <span>注册时间：</span>
-        <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
-                        end-placeholder="结束日期"
-                        :default-time="['00:00:00', '23:59:59']">
-        </el-date-picker>
-        <el-button @click="btnSearchUserList" style="position: absolute;left: 930px">搜索</el-button>
-        <br> <br>
-        <span>总人数：</span><span class="mar">{{this.totalUser}}个</span>
-        <span>已实名人数：</span><span class="mar">{{this.totalAuth}}个</span>
-        <span>已绑定行驶证人数：</span><span class="mar">{{this.totalCarInfo}}个</span>
-        <span>元积分总金额：</span><span class="mar">{{this.totalYJF}}</span>
-        <span>广告豆总金额：</span><span class="mar">{{this.totalGGD}}</span>
-        <span>元豆豆总金额：</span><span class="mar">{{this.totalYDD}}</span>
-        <br> <br>
+      <div style="position: relative; background-color: #f0f3fa;height: 290px;">
+        <div class="content-title">
+          <h3>用户信息</h3>
+        </div>
+        <div class="content-query">
+          <label>手机号码：</label>
+          <el-input v-model="phone" placeholder="请输入手机号码" clearable style="width: 150px"></el-input>
+          <label>真实姓名：</label>
+          <el-input v-model="name" placeholder="请输入姓名" clearable style="width: 150px"></el-input>
+          <label>身份证号：</label>
+          <el-input v-model="idCard" placeholder="请输入身份证号" clearable style="width: 170px"></el-input>
+          <label>钱包地址：</label>
+          <el-input v-model="walletAddress" placeholder="请输入钱包地址" clearable style="width: 220px"></el-input>
+          <br/>
+          <br/>
+          <br/>
+          <label>注册时间：</label>
+          <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
+                          end-placeholder="结束日期"
+                          :default-time="['00:00:00', '23:59:59']">
+          </el-date-picker>
+          <el-button @click="btnSearchUserList">搜索</el-button>
+        </div>
       </div>
-      <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange"
-                @row-click="getClickInfo">
-        <el-table-column type="selection" align="center" width="50">
-        </el-table-column>
-        <el-table-column label="编号" align="center" type="index" width="50">
-        </el-table-column>
-        <el-table-column label="手机号码" align="center" width="150">
-          <template slot-scope="scope">
-            <span>{{ scope.row.phone }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="真实姓名" align="center" min-width="100">
-          <template slot-scope="scope">
-            <span>{{ scope.row.realname }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="身份证号" align="center" min-width="120">
-          <template slot-scope="scope">
-            <span>{{ scope.row.idcard}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="钱包地址" align="center" min-width="130">
-          <template slot-scope="scope">
-            <span>{{ scope.row.wallet_address }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="注册时间" align="center" min-width="160">
-          <template slot-scope="scope">
-            <span>{{ scope.row.created_at }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="元积分" align="center">
-          <template slot-scope="scope">
-            <span>{{ scope.row.yuanj }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="广告豆" align="center">
-          <template slot-scope="scope">
-            <span>{{ scope.row.yuand }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="元豆豆" align="center">
-          <template slot-scope="scope">
-            <span>{{ scope.row.ydd }}</span>
-          </template>
-        </el-table-column>
-      </el-table>
-      <div class="block" style="text-align:center">
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page.sync="currentPage"
-          :page-size=limit
-          :page-sizes="[5, 10, 20, 30]"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total=totalUser>
-        </el-pagination>
-      </div>
-      <div style="margin-top: 20px;margin-bottom: 20px;">
-        <el-button @click="handleDeletes">删除</el-button>
+      <div class="content-table">
+        <div class="table-title">
+          <label>总人数：</label><span class="mar">{{this.totalUser}}个</span>
+          <label>已实名人数：</label><span class="mar">{{this.totalAuth}}个</span>
+          <label>已绑定行驶证人数：</label><span class="mar">{{this.totalCarInfo}}个</span>
+          <label>元积分总金额：</label><span class="mar">{{this.totalYJF}}</span>
+          <br>
+          <br>
+          <label>广告豆总金额：</label><span class="mar" style="margin-right: 140px;">{{this.totalGGD}}</span>
+          <label>元豆豆总金额：</label><span class="mar">{{this.totalYDD}}</span>
+        </div>
+        <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange"
+                  @row-click="getClickInfo">
+          <el-table-column type="selection" align="center" width="50">
+          </el-table-column>
+          <el-table-column label="编号" align="center" type="index" width="50">
+          </el-table-column>
+          <el-table-column label="手机号码" align="center" width="150">
+            <template slot-scope="scope">
+              <span>{{ scope.row.phone }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="真实姓名" align="center" min-width="100">
+            <template slot-scope="scope">
+              <span>{{ scope.row.realname }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="身份证号" align="center" min-width="120">
+            <template slot-scope="scope">
+              <span>{{ scope.row.idcard}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="钱包地址" align="center" min-width="130">
+            <template slot-scope="scope">
+              <span>{{ scope.row.wallet_address }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="注册时间" align="center" min-width="160">
+            <template slot-scope="scope">
+              <span>{{ scope.row.created_at }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="元积分" align="center">
+            <template slot-scope="scope">
+              <span>{{ scope.row.yuanj }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="广告豆" align="center">
+            <template slot-scope="scope">
+              <span>{{ scope.row.yuand }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="元豆豆" align="center">
+            <template slot-scope="scope">
+              <span>{{ scope.row.ydd }}</span>
+            </template>
+          </el-table-column>
+        </el-table>
+        <div class="block" style="text-align:center">
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page.sync="currentPage"
+            :page-size=limit
+            :page-sizes="[5, 10, 20, 30]"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total=totalUser>
+          </el-pagination>
+        </div>
+        <div style="margin-top: 20px;margin-bottom: 20px;">
+          <el-button @click="handleDeletes">删除</el-button>
+        </div>
       </div>
     </div>
   </div>
@@ -299,12 +307,92 @@
   .userQuery {
     .list_wrap {
       margin 0 auto
-    }
-    .el-button,.el-button--default{
-    
+      .content-title{
+        width: 100%;
+        height: 60px;
+        line-height 60px
+        background-color: #ffffff;
+        border: solid 2px #dfe6f7;
+        border-left: none;
+        font-size: 20px;
+        color: #333333;
+        padding-left:50px
+      }
+      .content-query{
+        width: 100%;
+        height: 200px;
+        border: solid 2px #dfe6f7;
+        border-left: none;
+        margin-top 10px
+        background-color #ffffff
+        padding: 20px 62px;
+        label{
+          font-size: 16px;
+          color: #333333;
+        }
+      }
+      .content-table{
+        border: solid 2px #dfe6f7;
+        border-left: none;
+        .table-title{
+          height: 90px;
+          background-color: #f0f3fa;
+          margin: 12px 20px;
+          font-size: 16px;
+          color: #555555;
+          padding: 18px 22px
+          span{
+            margin-right 150px
+          }
+        }
+
+      }
     }
     .mar{
       padding-right 20px
+      font-size: 18px;
+      color: #333333;
     }
+  }
+</style>
+<style lang="stylus">
+  .el-input{
+    margin-right 40px
+    .el-input__inner{
+      background-color: #f0f3fa;
+      border: solid 1px #dfe6f7;
+      border-radius unset
+    }
+  }
+  .el-date-editor{
+    border-radius: unset;
+    background-color: #f0f3fa;
+    border: solid 1px #dfe6f7;
+    input{
+      background-color: #f0f3fa;
+    }
+  }
+  .el-range-editor.is-active, .el-range-editor.is-active:hover{
+    border-color #dfe6f7
+  }
+  .el-button--default{
+    width: 150px;
+    height: 40px;
+    background-color: #437bff;
+    box-shadow: 0 0 18px 2px rgba(10, 127, 246, 0.28);
+    border-radius: 20px;
+    font-size: 18px;
+    color: #fefefe;
+    float: right;
+    margin-right: 70px;
+  }
+  .el-button--default:hover{
+    width: 150px;
+    height: 40px;
+    background-color: #437bff;
+    box-shadow: 0 0 18px 2px rgba(10, 127, 246, 0.28);
+    border-radius: 20px;
+    font-size: 18px;
+    color: #fefefe;
   }
 </style>
