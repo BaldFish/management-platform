@@ -15,6 +15,7 @@ import myArticleManagement from '@/components/home/articleManagement/articleMana
 import myCategoryList from '@/components/home/articleManagement/categoryList'
 import myArticleList from '@/components/home/articleManagement/articleList'
 import myAddArticle from '@/components/home/articleManagement/addArticle'
+import myApiUserQuery from '@/components/home/userManagement/apiUserQuery'
 Vue.use(Router);
 
 export default new Router({
@@ -69,6 +70,11 @@ export default new Router({
               path: '/home/userManagement/userDetails',
               name: 'userDetails',
               component: myUserDetails,
+            },
+            {
+              path: '/home/userManagement/apiUserQuery',
+              name: 'apiUserQuery',
+              component: myApiUserQuery,
             },
           ]
         },

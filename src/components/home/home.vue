@@ -5,7 +5,7 @@
         <span class="logo-title">元征</span>
         <ul class="nav">
           <li class="">
-            <router-link to="/home/userManagement"><span>用户管理</span></router-link>
+            <router-link to="/home/userManagement"><span>账户管理</span></router-link>
           </li>
           <li class="">
             <router-link to="/home/articleManagement"><span>文章管理</span></router-link>
@@ -59,7 +59,7 @@
       }
     },
     mounted() {
-      this.session_id = JSON.parse(sessionStorage.getItem("myLogin")).id;
+      this.session_id = JSON.parse(sessionStorage.getItem("myLogin")).data.id;
     },
     watch: {},
     computed: {},

@@ -1,78 +1,48 @@
 <template>
   <div class="userQuery">
     <div class="list_wrap">
-      <div style="position: relative; background-color: #f0f3fa;height: 290px;">
+      <div style="position: relative; background-color: #f0f3fa;height: 185px;">
         <div class="content-title">
-          <h3>用户信息</h3>
+          <h3>API账户查询</h3>
         </div>
         <div class="content-query">
           <label>手机号码：</label>
           <el-input v-model="phone" placeholder="请输入手机号码" clearable style="width: 150px"></el-input>
-          <label>真实姓名：</label>
-          <el-input v-model="name" placeholder="请输入姓名" clearable style="width: 150px"></el-input>
           <label>邮箱：</label>
-          <el-input v-model="email" placeholder="请输入邮箱" clearable style="width: 170px"></el-input>
-          <label>身份证号：</label>
-          <el-input v-model="idCard" placeholder="请输入身份证号" clearable style="width: 170px"></el-input>
-          <br>
-          <br>
-          <label>钱包地址：</label>
-          <el-input v-model="walletAddress" placeholder="请输入钱包地址" clearable style="width: 1023px"></el-input>
-          <br/>
-          <br/>
+          <el-input v-model="email" placeholder="请输入邮箱地址" clearable style="width: 220px"></el-input>
           <label>注册时间：</label>
           <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
                           end-placeholder="结束日期"
                           :default-time="['00:00:00', '23:59:59']">
           </el-date-picker>
-          <label style="margin-left: 30px;">平台：</label>
-          <el-input v-model="platform" placeholder="请输入平台" clearable style="width: 150px;margin-right: 30px"></el-input>
-          <label>应用：</label>
-          <el-input v-model="appname" placeholder="请输入应用" clearable style="width: 150px;margin-right: 30px"></el-input>
           <input type="button" @click="btnSearchUserList" class="search-btn" value="搜索">
         </div>
       </div>
       <div class="content-table">
         <div class="table-title">
-          <label>总人数：</label><span class="mar">{{this.totalUser}}个</span>
-          <label>已实名人数：</label><span class="mar">{{this.totalAuth}}个</span>
-          <label>已绑定行驶证人数：</label><span class="mar">{{this.totalCarInfo}}个</span>
-          <label>元积分总金额：</label><span class="mar">{{this.totalYJF}}</span>
-          <br>
-          <br>
-          <label>广告豆总金额：</label><span class="mar" style="margin-right: 140px;">{{this.totalGGD}}</span>
-          <label>元豆豆总金额：</label><span class="mar">{{this.totalYDD}}</span>
+          <label>账号总数：</label><span class="mar" style="margin-right: 140px;">{{totalUser}}</span>
+          <label>余额总额：</label><span class="mar">{{totalBalance}}</span>
         </div>
         <div class="table-details">
           <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange"
-                    @row-click="getClickInfo" @sort-change='sortChange'>
+                    @row-click="getClickInfo"  @sort-change='sortChange'>
             <el-table-column type="selection" align="center" width="50">
             </el-table-column>
             <el-table-column label="编号" align="center" type="index" width="50">
             </el-table-column>
-            <el-table-column label="手机号码" align="center" width="150" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.phone }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="真实姓名" align="center" min-width="100" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.name }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="邮箱" align="center" min-width="100" sortable='custom'>
+            <el-table-column label="邮箱" align="center" width="150" sortable='custom'>
               <template slot-scope="scope">
                 <span>{{ scope.row.email }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="身份证号" align="center" min-width="120" sortable='custom'>
+            <el-table-column label="公司/事业部" align="center" min-width="100" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.idcard}}</span>
+                <span>{{ scope.row.company }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="钱包地址" align="center" min-width="130" sortable='custom'>
+            <el-table-column label="APIKEY" align="center" min-width="120" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.address }}</span>
+                <span>{{ scope.row.apikey}}</span>
               </template>
             </el-table-column>
             <el-table-column label="注册时间" align="center" min-width="160" sortable='custom'>
@@ -80,35 +50,22 @@
                 <span>{{ scope.row.created_at }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="元积分" align="center" sortable='custom'>
+            <el-table-column label="手机号码" align="center" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.yuanj }}</span>
+                <span>{{ scope.row.phone.substr(3) }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="广告豆" align="center" sortable='custom'>
+            <el-table-column label="预警金额" align="center" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.yuand }}</span>
+                <span>{{ scope.row.warning }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="元豆豆" align="center" sortable='custom'>
+            <el-table-column label="余额" align="center" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.ydd }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="平台" align="center" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.platform }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="应用" align="center" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.appname }}</span>
+                <span>{{ scope.row.balance }}</span>
               </template>
             </el-table-column>
           </el-table>
-          <div style="margin-top: 20px;margin-bottom: 20px;">
-            <el-button type="primary" @click="handleDeletes" icon="el-icon-delete" class="delete-btn">删除</el-button>
-          </div>
           <div class="block" style="text-align:center">
             <el-pagination
               @size-change="handleSizeChange"
@@ -128,21 +85,15 @@
 
 <script>
   export default {
-    name: "userQuery",
+    name: "apiUserQuery",
     components: {},
     data() {
       return {
         totalUser: 10,
-        totalAuth: "",
-        totalCarInfo: "",
-        totalYJF: "",
-        totalYDD: "",
-        totalGGD: "",
+        totalBalance:"",
         userList: [],
         phone: "",
-        name: "",
-        idCard: "",
-        walletAddress: "",
+        email:"",
 
         search: false,//是否搜索标识
         multipleSelection: [],
@@ -153,25 +104,25 @@
         page: 1,
         limit: 10,
         time:["",""],
-        email:"",
+        token:"",
+        sort:"",
+        direction:"",
 
-        //////////////address:"",
-        platform:"",
-        appname:"",
       }
     },
     created() {
     },
     beforeMount() {
+
     },
     mounted() {
       this.token = JSON.parse(sessionStorage.getItem("myLogin")).data.token;
-      this.getUserList()
+      this.getApiUserList()
     },
     watch: {
       time: function () {
-        if(this.time===null){
-          this.time=["",""]
+        if (this.time === null){
+          this.time = ["",""]
         }
       }
     },
@@ -185,7 +136,7 @@
     },
     methods: {
       //获取用户列表
-      getUserList() {
+      getApiUserList() {
         //时间格式化
         if(this.time[0]){
           this.time[0] = this.$utils.formatDate(new Date(this.time[0]), "yyyy-MM-dd hh:mm:ss").substr(0,10)
@@ -196,83 +147,64 @@
         if(this.phone){
           initPhone = "+86" + this.phone
         }
-
-
-
         this.$axios({
           method: "GET",
-          url: `${this.$baseURL}/v1/backstage/users?phone=${initPhone}&name=${this.name}&email=${this.email}&idcard=${this.idCard}&address=${this.address}&platform=${this.platform}&appname=${this.appname}&created_since=${this.time[0]}&created_to=${this.time[1]}&sort=&direction=&page=${this.page-1}&limit=${this.limit}`,
+          url: `${this.$baseURL}/v1/backstage/apiaccounts?email=${this.email}&phone=${initPhone}&created_since=${this.time[0]}&created_to=${this.time[1]}&sort=${this.sort}&direction=${this.direction}&page=${this.page-1}&limit=${this.limit}`,
           headers: {
             'X-Access-Token': this.token,
           }
         }).then(res => {
-
-          console.log(res,"494949494")
-
-          this.totalUser = res.data.count;
-
-          this.totalAuth = res.data.totalAuth;
-          this.totalCarInfo = res.data.totalCarInfo;
-          this.totalYJF = res.data.totalYuanj;
-          this.totalYDD = res.data.totalYdd;
-          this.totalGGD = res.data.totalYuand;
+          this.userList = res.data.data.accounts;
+          this.totalUser = Number(res.data.data.count);
+          this.totalBalance = res.data.data.totalBalance;
 
 
           let that = this;
-          res.data.users.forEach(function (item) {
+          res.data.data.accounts.forEach(function (item) {
             if (item.created_at) {
               item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
             }
           });
-          this.userList = res.data.users;
+
         }).catch(error => {
           console.log(error)
         })
       },
       //排序
       sortChange: function(column, prop, order) {
-        console.log(column + '-' + column.prop + '-' + column.order)
+        if(column.column.label == "邮箱"){
+          this.sort = "email";
+        }else if(column.column.label == "公司/事业部"){
+          this.sort = "company";
+        }else if(column.column.label == "APIKEY"){
+          this.sort = "apikey";
+        }else if(column.column.label == "注册时间"){
+          this.sort = "created_at";
+        }else if(column.column.label == "手机号码"){
+          this.sort = "phone";
+        }else if(column.column.label == "预警金额"){
+          this.sort = "warning";
+        }else if(column.column.label == "余额"){
+          this.sort = "balance";
+        }
+        if (column.order == "descending"){
+          this.direction = "desc";
+          this.getApiUserList()
+        } else if (column.order == "ascending"){
+          this.direction = "asc";
+          this.getApiUserList()
+        }
       },
+
+
 
 
       //点击搜索按钮搜索用户列表
       btnSearchUserList() {
         this.search = true;//是否搜索标识
         this.page = 1;//按钮搜索时初始化page
-        let data = {
-          page: this.page,
-          limit: this.limit,
-          phone: this.phone !== "" ? '+86' + this.phone : this.phone,
-          realname: this.name,
-          idcard: this.idCard,
-          wallet_address: this.walletAddress,
-          time1: new Date(this.time[0]).toUTCString()==="Invalid Date"?"":new Date(this.time[0]).toUTCString(),
-          time2: new Date(this.time[1]).toUTCString()==="Invalid Date"?"":new Date(this.time[1]).toUTCString(),
-        };
-        this.$axios({
-          method: "POST",
-          url: `${this.$baseURL}/v1/backstage/users/find`,
-          data: this.$querystring.stringify(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }
-        }).then(res => {
-          this.totalUser = res.data.totalUser;
-          this.totalAuth = res.data.totalAuth;
-          this.totalCarInfo = res.data.totalCarInfo;
-          this.totalYJF = res.data.totalYuanj;
-          this.totalYDD = res.data.totalYdd;
-          this.totalGGD = res.data.totalYuand;
-          let that = this;
-          res.data.users.forEach(function (item) {
-            if (item.created_at) {
-              item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
-            }
-          });
-          this.userList = res.data.users;
-        }).catch(error => {
-          console.log(error)
-        })
+        //this.phone = "+86" + this.phone;
+        this.getApiUserList()
       },
       //分页切换搜索用户列表
       pageSearchUserList() {
@@ -296,11 +228,8 @@
           }
         }).then(res => {
           this.totalUser = res.data.totalUser;
-          this.totalAuth = res.data.totalAuth;
-          this.totalCarInfo = res.data.totalCarInfo;
-          this.totalYJF = res.data.totalYuanj;
-          this.totalYDD = res.data.totalYdd;
-          this.totalGGD = res.data.totalYuand;
+
+
           let that = this;
           res.data.users.forEach(function (item) {
             if (item.created_at) {
@@ -320,12 +249,12 @@
       //更改每页显示条数
       handleSizeChange(val) {
         this.limit = val;
-        this.search ? this.pageSearchUserList() : this.getUserList();
+        this.search ? this.pageSearchUserList() : this.getApiUserList();
       },
       //切换分页
       handleCurrentChange(val) {
         this.page = val;
-        this.search ? this.pageSearchUserList() : this.getUserList();
+        this.search ? this.pageSearchUserList() : this.getApiUserList();
       },
       //删除按钮删除方法
       handleDeletes() {
@@ -342,7 +271,7 @@
           }
         }).then((res) => {
           this.page=1;
-          this.search ? this.pageSearchUserList() : this.getUserList();
+          this.search ? this.pageSearchUserList() : this.getApiUserList();
         }).catch((err) => {
         })
       },
@@ -371,7 +300,7 @@
       }
       .content-query{
         width: 100%;
-        height: 200px;
+        height: 95px;
         border: solid 2px #dfe6f7;
         border-left: none;
         margin-top 10px
@@ -387,12 +316,12 @@
           background-color: #437bff;
           box-shadow: 0 0 8px 2px rgba(10, 127, 246, 0.28);
           border-radius: 20px;
-          float: right;
-          margin-right: 120px;
+          margin-left 20px
           font-size: 18px;
           color: #fefefe;
           outline none
           cursor pointer
+          float right
         }
       }
       .content-table{
@@ -401,10 +330,11 @@
         .table-title{
           height: 90px;
           background-color: #f0f3fa;
-          margin: 12px 20px;
+          margin: 16px;
           font-size: 16px;
           color: #555555;
           padding: 18px 22px
+          line-height: 54px;
           span{
             margin-right 150px
           }
@@ -427,7 +357,7 @@
 </style>
 <style lang="stylus">
   .el-input{
-    margin-right 50px
+    margin-right 40px
     .el-input__inner{
       background-color: #f0f3fa;
       border: solid 1px #dfe6f7;

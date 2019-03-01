@@ -2,8 +2,10 @@
   <div class="accountRanking">
     <div class="list_wrap">
       <div>
-        <div class="content-title">
-          <h3>账户金额排行</h3>
+        <div class="content-title-bg">
+          <div class="content-title">
+            <h3>账户金额排行</h3>
+          </div>
         </div>
         <template>
           <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -155,6 +157,7 @@
       //获取元积分列表
       this.page_yuanj = 1;
       this.limit_yuanj = 10;
+      this.token = JSON.parse(sessionStorage.getItem("myLogin")).data.token;
       this.getYuanPointsList()
     },
     watch: {},
@@ -195,6 +198,7 @@
           data: this.$querystring.stringify(data),
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Access-Token': this.token,
           }
         }).then(res => {
           this.yuanPointsList = res.data.yuanj;
@@ -224,6 +228,7 @@
           data: this.$querystring.stringify(data),
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Access-Token': this.token,
           }
         }).then(res => {
           this.advBeansList = res.data.yuand;
@@ -253,6 +258,7 @@
           data: this.$querystring.stringify(data),
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Access-Token': this.token,
           }
         }).then(res => {
           this.yuanBeansList = res.data.ydd;
@@ -270,16 +276,20 @@
   .accountRanking {
     .list_wrap{
       margin 0 auto
-      .content-title{
-        width: 100%;
-        height: 60px;
-        line-height 60px
-        background-color: #ffffff;
-        border: solid 2px #dfe6f7;
-        border-left: none;
-        font-size: 20px;
-        color: #333333;
-        padding-left:50px
+      .content-title-bg{
+        background-color: #f0f3fa;
+        height: 70px;
+        .content-title{
+          width: 100%;
+          height: 60px;
+          line-height 60px
+          background-color: #ffffff;
+          border: solid 2px #dfe6f7;
+          border-left: none;
+          font-size: 20px;
+          color: #333333;
+          padding-left:50px
+        }
       }
     }
   }
@@ -288,7 +298,6 @@
   .el-tabs{
     border: solid 2px #dfe6f7;
     border-left: none;
-    margin-top 10px
     .el-tabs__header{
       margin: 16px;
       height: 90px;

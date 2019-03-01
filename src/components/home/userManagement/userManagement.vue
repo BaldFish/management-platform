@@ -3,10 +3,10 @@
     <el-container>
       <el-aside width="170px" class="nav-aside">
         <el-menu default-active="userQuery" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-                 unique-opened default-openeds>
+                 unique-opened>
           <el-submenu index="userManagement">
             <template slot="title">
-              <span slot="title">用户管理</span>
+              <span slot="title">账户管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="userQuery">
@@ -14,6 +14,9 @@
               </el-menu-item>
               <el-menu-item index="accountRanking">
                 <router-link to="/home/userManagement/accountRanking">账户金额排行</router-link>
+              </el-menu-item>
+              <el-menu-item index="accountRanking">
+                <router-link to="/home/userManagement/apiUserQuery">API账户查询</router-link>
               </el-menu-item>
               <!--<el-menu-item index="yuanDouRecharge">
                 <router-link to="/home/userManagement/yuanDouRecharge">元豆充值</router-link>
