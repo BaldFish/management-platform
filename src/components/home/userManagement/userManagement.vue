@@ -13,6 +13,12 @@
                 <router-link to="/home/userManagement/userQuery">用户查询</router-link>
               </el-menu-item>
               <el-menu-item index="accountRanking">
+                <router-link to="/home/userManagement/merchantQuery">商户查询</router-link>
+              </el-menu-item>
+              <el-menu-item index="accountRanking">
+                <router-link to="/home/userManagement/systemQuery">系统查询</router-link>
+              </el-menu-item>
+              <el-menu-item index="accountRanking">
                 <router-link to="/home/userManagement/accountRanking">账户金额排行</router-link>
               </el-menu-item>
               <el-menu-item index="accountRanking">

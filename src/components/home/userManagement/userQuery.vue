@@ -13,11 +13,11 @@
           <label>邮箱：</label>
           <el-input v-model="email" placeholder="请输入邮箱" clearable style="width: 170px"></el-input>
           <label>身份证号：</label>
-          <el-input v-model="idCard" placeholder="请输入身份证号" clearable style="width: 170px"></el-input>
+          <el-input v-model="idcard" placeholder="请输入身份证号" clearable style="width: 200px"></el-input>
           <br>
           <br>
           <label>钱包地址：</label>
-          <el-input v-model="walletAddress" placeholder="请输入钱包地址" clearable style="width: 1023px"></el-input>
+          <el-input v-model="address" placeholder="请输入钱包地址" clearable style="width: 1023px"></el-input>
           <br/>
           <br/>
           <label>注册时间：</label>
@@ -34,14 +34,21 @@
       </div>
       <div class="content-table">
         <div class="table-title">
-          <label>总人数：</label><span class="mar">{{this.totalUser}}个</span>
-          <label>已实名人数：</label><span class="mar">{{this.totalAuth}}个</span>
-          <label>已绑定行驶证人数：</label><span class="mar">{{this.totalCarInfo}}个</span>
-          <label>元积分总金额：</label><span class="mar">{{this.totalYJF}}</span>
+          <label>用户总数：</label><span class="mar">{{this.count_user}}个</span>
+          <label>拥有钱包用户数：</label><span class="mar">{{this.count_with_address}}个</span>
+          <label>已实名人数：</label><span class="mar">{{this.count_with_idcard}}个</span>
+          <label>已绑定行驶证人数：</label><span class="mar">{{this.count_with_vehicle}}个</span>
           <br>
           <br>
-          <label>广告豆总金额：</label><span class="mar" style="margin-right: 140px;">{{this.totalGGD}}</span>
-          <label>元豆豆总金额：</label><span class="mar">{{this.totalYDD}}</span>
+          <div class="fl" style="width: 284px;">
+            <label>元积分总金额：</label><span class="mar">{{this.totalYJF}}</span>
+          </div>
+          <div class="fl" style="width: 332px;">
+            <label>广告豆总金额：</label><span class="mar">{{this.totalGGD}}</span>
+          </div>
+          <div class="fl">
+            <label>元豆豆总金额：</label><span class="mar">{{this.totalYDD}}</span>
+          </div>
         </div>
         <div class="table-details">
           <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange"
@@ -82,17 +89,17 @@
             </el-table-column>
             <el-table-column label="元积分" align="center" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.yuanj }}</span>
+                <span>{{ scope.row.TSD }}</span>
               </template>
             </el-table-column>
             <el-table-column label="广告豆" align="center" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.yuand }}</span>
+                <span>{{ scope.row.ADE }}</span>
               </template>
             </el-table-column>
             <el-table-column label="元豆豆" align="center" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.ydd }}</span>
+                <span>{{ scope.row.YDD }}</span>
               </template>
             </el-table-column>
             <el-table-column label="平台" align="center" sortable='custom'>
@@ -133,18 +140,17 @@
     data() {
       return {
         totalUser: 10,
-        totalAuth: "",
-        totalCarInfo: "",
+        count_user: "",
+        count_with_address: "",
+        count_with_idcard: "",
+        count_with_vehicle: "",
         totalYJF: "",
         totalYDD: "",
         totalGGD: "",
         userList: [],
         phone: "",
         name: "",
-        idCard: "",
-        walletAddress: "",
-
-        search: false,//是否搜索标识
+        idcard: "",
         multipleSelection: [],
         //multipleDelete: [],
         loading: false,
@@ -154,10 +160,11 @@
         limit: 10,
         time:["",""],
         email:"",
-
-        //////////////address:"",
+        address:"",
         platform:"",
         appname:"",
+        direction:"",
+        sort:"",
       }
     },
     created() {
@@ -172,6 +179,9 @@
       time: function () {
         if(this.time===null){
           this.time=["",""]
+        } else {
+          this.time[0] = new Date(this.time[0]).toUTCString() === "Invalid Date" ? "" : new Date(this.time[0]).toUTCString();
+          this.time[1] = new Date(this.time[1]).toUTCString() === "Invalid Date" ? "" : new Date(this.time[1]).toUTCString();
         }
       }
     },
@@ -179,45 +189,33 @@
       //筛查出选中的数据的user_id组成的数组
       multipleDelete:function () {
         return this.$_.map(this.multipleSelection, function (item) {
-          return item._id
+          return item.id
         });
       }
     },
     methods: {
       //获取用户列表
       getUserList() {
-        //时间格式化
-        if(this.time[0]){
-          this.time[0] = this.$utils.formatDate(new Date(this.time[0]), "yyyy-MM-dd hh:mm:ss").substr(0,10)
-          this.time[1] = this.$utils.formatDate(new Date(this.time[1]), "yyyy-MM-dd hh:mm:ss").substr(0,10)
-        }
         //手机号格式化
         let initPhone = "";
         if(this.phone){
           initPhone = "+86" + this.phone
         }
-
-
-
         this.$axios({
           method: "GET",
-          url: `${this.$baseURL}/v1/backstage/users?phone=${initPhone}&name=${this.name}&email=${this.email}&idcard=${this.idCard}&address=${this.address}&platform=${this.platform}&appname=${this.appname}&created_since=${this.time[0]}&created_to=${this.time[1]}&sort=&direction=&page=${this.page-1}&limit=${this.limit}`,
+          url: `${this.$baseURL}/v1/backstage/users?phone=${initPhone}&name=${this.name}&email=${this.email}&idcard=${this.idcard}&address=${this.address}&platform=${this.platform}&appname=${this.appname}&created_since=${this.time[0]}&created_to=${this.time[1]}&sort=${this.sort}&direction=${this.direction}&page=${this.page-1}&limit=${this.limit}`,
           headers: {
             'X-Access-Token': this.token,
           }
         }).then(res => {
-
-          console.log(res,"494949494")
-
           this.totalUser = res.data.count;
-
-          this.totalAuth = res.data.totalAuth;
-          this.totalCarInfo = res.data.totalCarInfo;
-          this.totalYJF = res.data.totalYuanj;
-          this.totalYDD = res.data.totalYdd;
-          this.totalGGD = res.data.totalYuand;
-
-
+          this.count_user = res.data.count_user;
+          this.count_with_address = res.data.count_with_address;
+          this.count_with_idcard = res.data.count_with_idcard;
+          this.count_with_vehicle = res.data.count_with_vehicle;
+          this.totalYJF = res.data.TSD;
+          this.totalYDD = res.data.ADE;
+          this.totalGGD = res.data.YDD;
           let that = this;
           res.data.users.forEach(function (item) {
             if (item.created_at) {
@@ -231,86 +229,41 @@
       },
       //排序
       sortChange: function(column, prop, order) {
-        console.log(column + '-' + column.prop + '-' + column.order)
+        if(column.column.label == "邮箱"){
+          this.sort = "email";
+        }else if(column.column.label == "钱包地址"){
+          this.sort = "address";
+        }else if(column.column.label == "注册时间"){
+          this.sort = "created_at";
+        }else if(column.column.label == "手机号码"){
+          this.sort = "phone";
+        }else if(column.column.label == "真实姓名"){
+          this.sort = "name";
+        }else if(column.column.label == "身份证号"){
+          this.sort = "idcard";
+        }else if(column.column.label == "元积分"){
+          this.sort = "TSD";
+        }else if(column.column.label == "广告豆"){
+          this.sort = "ADE";
+        }else if(column.column.label == "元豆豆"){
+          this.sort = "YDD";
+        }else if(column.column.label == "平台"){
+          this.sort = "platform";
+        }else if(column.column.label == "应用"){
+          this.sort = "appname";
+        }
+        if (column.order == "descending"){
+          this.direction = "desc";
+          this.getUserList()
+        } else if (column.order == "ascending"){
+          this.direction = "asc";
+          this.getUserList()
+        }
       },
-
-
       //点击搜索按钮搜索用户列表
       btnSearchUserList() {
-        this.search = true;//是否搜索标识
         this.page = 1;//按钮搜索时初始化page
-        let data = {
-          page: this.page,
-          limit: this.limit,
-          phone: this.phone !== "" ? '+86' + this.phone : this.phone,
-          realname: this.name,
-          idcard: this.idCard,
-          wallet_address: this.walletAddress,
-          time1: new Date(this.time[0]).toUTCString()==="Invalid Date"?"":new Date(this.time[0]).toUTCString(),
-          time2: new Date(this.time[1]).toUTCString()==="Invalid Date"?"":new Date(this.time[1]).toUTCString(),
-        };
-        this.$axios({
-          method: "POST",
-          url: `${this.$baseURL}/v1/backstage/users/find`,
-          data: this.$querystring.stringify(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }
-        }).then(res => {
-          this.totalUser = res.data.totalUser;
-          this.totalAuth = res.data.totalAuth;
-          this.totalCarInfo = res.data.totalCarInfo;
-          this.totalYJF = res.data.totalYuanj;
-          this.totalYDD = res.data.totalYdd;
-          this.totalGGD = res.data.totalYuand;
-          let that = this;
-          res.data.users.forEach(function (item) {
-            if (item.created_at) {
-              item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
-            }
-          });
-          this.userList = res.data.users;
-        }).catch(error => {
-          console.log(error)
-        })
-      },
-      //分页切换搜索用户列表
-      pageSearchUserList() {
-        this.search = true;
-        let data = {
-          page: this.page,
-          limit: this.limit,
-          phone: this.phone !== "" ? '+86' + this.phone : this.phone,
-          realname: this.name,
-          idcard: this.idCard,
-          wallet_address: this.walletAddress,
-          time1: new Date(this.time[0]).toUTCString()==="Invalid Date"?"":new Date(this.time[0]).toUTCString(),
-          time2: new Date(this.time[1]).toUTCString()==="Invalid Date"?"":new Date(this.time[1]).toUTCString(),
-        };
-        this.$axios({
-          method: "POST",
-          url: `${this.$baseURL}/v1/backstage/users/find`,
-          data: this.$querystring.stringify(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }
-        }).then(res => {
-          this.totalUser = res.data.totalUser;
-          this.totalAuth = res.data.totalAuth;
-          this.totalCarInfo = res.data.totalCarInfo;
-          this.totalYJF = res.data.totalYuanj;
-          this.totalYDD = res.data.totalYdd;
-          this.totalGGD = res.data.totalYuand;
-          let that = this;
-          res.data.users.forEach(function (item) {
-            if (item.created_at) {
-              item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
-            }
-          });
-          this.userList = res.data.users;
-        }).catch(error => {
-          console.log(error)
-        })
+        this.getUserList()
       },
       //获取所点击行的信息
       getClickInfo(row){
@@ -320,31 +273,38 @@
       //更改每页显示条数
       handleSizeChange(val) {
         this.limit = val;
-        this.search ? this.pageSearchUserList() : this.getUserList();
+        this.getUserList()
       },
       //切换分页
       handleCurrentChange(val) {
         this.page = val;
-        this.search ? this.pageSearchUserList() : this.getUserList();
+        this.getUserList()
       },
       //删除按钮删除方法
       handleDeletes() {
         if (this.multipleDelete.length === 0) {
           return
         }
-        let multipleData =JSON.stringify({user_id: this.multipleDelete});
-        this.$axios({
-          method: "POST",
-          url: `${this.$baseURL}/v1/backstage/users/delete`,
-          data: multipleData,
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }).then((res) => {
-          this.page=1;
-          this.search ? this.pageSearchUserList() : this.getUserList();
-        }).catch((err) => {
-        })
+        this.$confirm('确定删除此用户?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          this.$axios({
+            method: "DELETE",
+            url: `${this.$baseURL}/v1/backstage/users/${this.multipleDelete[0]}`,
+            headers: {
+              'X-Access-Token': this.token,
+            }
+          }).then((res) => {
+            this.page=1;
+            this.getUserList();
+          }).catch((err) => {
+          })
+        }).catch(() => {
+          console.log('已取消删除')
+        });
       },
       //获取选中复选框数据
       handleSelectionChange(val) {
@@ -406,7 +366,7 @@
           color: #555555;
           padding: 18px 22px
           span{
-            margin-right 150px
+            margin-right 130px
           }
         }
       }

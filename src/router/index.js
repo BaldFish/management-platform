@@ -16,6 +16,8 @@ import myCategoryList from '@/components/home/articleManagement/categoryList'
 import myArticleList from '@/components/home/articleManagement/articleList'
 import myAddArticle from '@/components/home/articleManagement/addArticle'
 import myApiUserQuery from '@/components/home/userManagement/apiUserQuery'
+import myMerchantQuery from '@/components/home/userManagement/merchantQuery'
+import mySystemQuery from '@/components/home/userManagement/systemQuery'
 Vue.use(Router);
 
 export default new Router({
@@ -75,6 +77,16 @@ export default new Router({
               path: '/home/userManagement/apiUserQuery',
               name: 'apiUserQuery',
               component: myApiUserQuery,
+            },
+            {
+              path: '/home/userManagement/merchantQuery',
+              name: 'merchantQuery',
+              component: myMerchantQuery,
+            },
+            {
+              path: '/home/userManagement/systemQuery',
+              name: 'systemQuery',
+              component: mySystemQuery,
             },
           ]
         },
