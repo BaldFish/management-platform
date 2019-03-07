@@ -25,8 +25,8 @@
         <div class="table-title">
           <br>
           <label>总人数：</label><span class="mar">{{this.totalUser}}个</span>
-          <label>元积分总金额：</label><span class="mar" style="margin-right: 141px;">{{this.totalYJF}}</span>
-          <label>广告豆总金额：</label><span class="mar" style="margin-right: 152px;">{{this.totalGGD}}</span>
+          <label>元积分总金额：</label><span class="mar">{{this.totalYJF}}</span>
+          <label>广告豆总金额：</label><span class="mar">{{this.totalGGD}}</span>
           <label>元豆豆总金额：</label><span class="mar">{{this.totalYDD}}</span>
         </div>
         <div class="table-details">
@@ -90,8 +90,6 @@
         totalYDD: "",
         totalGGD: "",
         userList: [],
-
-
         multipleSelection: [],
         //multipleDelete: [],
         loading: false,
@@ -100,7 +98,6 @@
         page: 1,
         limit: 10,
         time:["",""],
-
         address:"",
         direction:"",
         sort:"",
@@ -142,15 +139,10 @@
             'X-Access-Token': this.token,
           }
         }).then(res => {
-
-          console.log(res,"494949494")
-
           this.totalUser = res.data.data.count;
-
           this.totalYJF = res.data.data.TSD;
           this.totalYDD = res.data.data.ADE;
           this.totalGGD = res.data.data.YDD;
-
           let that = this;
           res.data.data.accounts.forEach(function (item) {
             if (item.created_at) {
@@ -183,8 +175,6 @@
           this.getSystemList()
         }
       },
-
-
       //点击搜索按钮搜索用户列表
       btnSearchUserList() {
         this.page = 1;//按钮搜索时初始化page
@@ -193,7 +183,8 @@
       //获取所点击行的信息
       getClickInfo(row){
         sessionStorage.setItem("clickInfo", JSON.stringify(row));
-        this.$router.push("/home/userManagement/userDetails")
+        //this.$router.push("/home/userManagement/systemDetails");
+        window.open("/home/userManagement/systemDetails",'_blank');
       },
       //更改每页显示条数
       handleSizeChange(val) {
@@ -265,7 +256,7 @@
           color: #555555;
           padding: 18px 22px
           span{
-            margin-right 150px
+            margin-right 70px
           }
         }
       }

@@ -79,7 +79,7 @@
             </el-table-column>
             <el-table-column label="钱包地址" align="center" min-width="130" sortable='custom'>
               <template slot-scope="scope">
-                <span>{{ scope.row.address }}</span>
+                <span>{{ scope.row.address.substr(0,12) + "..." }}</span>
               </template>
             </el-table-column>
             <el-table-column label="注册时间" align="center" min-width="160" sortable='custom'>
@@ -268,7 +268,8 @@
       //获取所点击行的信息
       getClickInfo(row){
         sessionStorage.setItem("clickInfo", JSON.stringify(row));
-        this.$router.push("/home/userManagement/userDetails")
+        //this.$router.push("/home/userManagement/userDetails");
+        window.open("/home/userManagement/userDetails",'_blank');
       },
       //更改每页显示条数
       handleSizeChange(val) {
