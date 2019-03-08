@@ -150,6 +150,7 @@
                 </tbody>
               </table>
             </div>
+            <div class="line-division"></div>
             <template>
               <!--第2层tab-->
               <el-tabs v-model="type2" @tab-click="type2TabClick">
@@ -270,9 +271,10 @@
                 </tbody>
               </table>
             </div>
+            <div class="line-division"></div>
             <template>
               <!--第2层tab-->
-              <el-tabs v-model="type2" @tab-click="type2TabClick" style="margin-left: 20px">
+              <el-tabs v-model="type2" @tab-click="type2TabClick">
                 <!--第3层tab筛选和搜索-->
                 <el-radio-group v-model="type3" style="margin-bottom: 30px;float: left;" @change="type3TabClick">
                   <el-radio-button label="">全部</el-radio-button>
@@ -390,9 +392,10 @@
                   </tbody>
                 </table>
               </div>
+              <div class="line-division"></div>
               <template>
                 <!--第2层tab-->
-                <el-tabs v-model="type2" @tab-click="type2TabClick" style="margin-left: 20px">
+                <el-tabs v-model="type2" @tab-click="type2TabClick">
                   <!--第3层tab筛选和搜索-->
                   <el-radio-group v-model="type3" style="margin-bottom: 30px;float: left;" @change="type3TabClick">
                     <el-radio-button label="">全部</el-radio-button>
@@ -995,6 +998,13 @@
             font-size: 16px;
           }
         }
+      }
+      .line-division{
+        height: 12px
+        background-color: #f0f3fa;
+        border: solid 2px #dfe6f7;
+        border-left none
+        border-right none
       }
       .el-tabs{
         .el-tabs__content{
