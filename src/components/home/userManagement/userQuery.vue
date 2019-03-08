@@ -209,7 +209,7 @@
           }
         }).then(res => {
           this.totalUser = res.data.count;
-          this.count_user = res.data.count_user;
+          this.count_user = res.data.count;
           this.count_with_address = res.data.count_with_address;
           this.count_with_idcard = res.data.count_with_idcard;
           this.count_with_vehicle = res.data.count_with_vehicle;
