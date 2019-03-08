@@ -1,7 +1,7 @@
 <template>
   <div class="userQuery">
     <div class="list_wrap">
-      <div style="position: relative; background-color: #f0f3fa;height: 290px;">
+      <div style="position: relative; background-color: #f0f3fa;height: 235px;">
         <div class="content-title">
           <h3>商户账号查询</h3>
         </div>
@@ -224,7 +224,8 @@
       }
       .content-query{
         width: 100%;
-        height: 200px;
+        //height: 200px;
+        height: 145px;
         border: solid 2px #dfe6f7;
         border-left: none;
         margin-top 10px
