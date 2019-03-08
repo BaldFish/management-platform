@@ -9,16 +9,19 @@
           <br>
           <br>
           <label>钱包地址：</label>
+          <el-input v-model="address" placeholder="请输入钱包地址" clearable style="width: 812px"></el-input>
+          <input type="button" @click="btnSearchUserList" class="search-btn" value="搜索">
+          <!--<label>钱包地址：</label>
           <el-input v-model="address" placeholder="请输入钱包地址" clearable style="width: 1023px"></el-input>
           <br/>
           <br/>
           <br/>
-          <!--<label>注册时间：</label>
+          <label>注册时间：</label>
           <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
                           end-placeholder="结束日期"
                           :default-time="['00:00:00', '23:59:59']">
-          </el-date-picker>-->
-          <input type="button" @click="btnSearchUserList" class="search-btn" value="搜索">
+          </el-date-picker>
+          <input type="button" @click="btnSearchUserList" class="search-btn" value="搜索">-->
         </div>
       </div>
       <div class="content-table">

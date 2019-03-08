@@ -33,20 +33,6 @@
           <td>{{userInfo.appname}}</td>
           <td></td>
         </tr>
-        <tr>
-          <td class="table-title">身份证号：</td>
-          <td>{{userInfo.idcard}}</td>
-          <td class="table-title">认证时间：</td>
-          <td>{{userInfo.idcard_at}}</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="table-title">行驶证：</td>
-          <td style="color: red">{{userInfo.vehicle_police}}</td>
-          <td class="table-title">认证时间：</td>
-          <td>{{userInfo.vehicle_at}}</td>
-          <td><a :href="userInfo.vehicle_img" target="_blank" v-if="userInfo.vehicle_img">查看照片</a></td>
-        </tr>
         </tbody>
         <tbody class="check-more" v-if="checkMore" @click="checkMoreTable">
           <tr>
@@ -54,6 +40,20 @@
           </tr>
         </tbody>
         <tbody v-if="!checkMore">
+          <tr>
+            <td class="table-title">身份证号：</td>
+            <td>{{userInfo.idcard}}</td>
+            <td class="table-title">认证时间：</td>
+            <td>{{userInfo.idcard_at}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="table-title">行驶证：</td>
+            <td style="color: red">{{userInfo.vehicle_police}}</td>
+            <td class="table-title">认证时间：</td>
+            <td>{{userInfo.vehicle_at}}</td>
+            <td><a :href="userInfo.vehicle_img" target="_blank" v-if="userInfo.vehicle_img">查看照片</a></td>
+          </tr>
           <tr>
             <td class="table-title">车牌号：</td>
             <td>{{userInfo.vehicle_plate_no}}</td>
