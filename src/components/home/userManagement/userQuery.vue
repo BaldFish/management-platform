@@ -214,8 +214,8 @@
           this.count_with_idcard = res.data.count_with_idcard;
           this.count_with_vehicle = res.data.count_with_vehicle;
           this.totalYJF = res.data.TSD;
-          this.totalYDD = res.data.ADE;
-          this.totalGGD = res.data.YDD;
+          this.totalYDD = res.data.YDD;
+          this.totalGGD = res.data.ADE;
           let that = this;
           res.data.users.forEach(function (item) {
             if (item.created_at) {
