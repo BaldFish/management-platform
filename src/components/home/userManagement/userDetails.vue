@@ -27,6 +27,13 @@
           <td></td>
         </tr>
         <tr>
+          <td class="table-title">平台：</td>
+          <td>{{userInfo.platform}}</td>
+          <td class="table-title">应用：</td>
+          <td>{{userInfo.appname}}</td>
+          <td></td>
+        </tr>
+        <tr>
           <td class="table-title">身份证号：</td>
           <td>{{userInfo.idcard}}</td>
           <td class="table-title">认证时间：</td>
@@ -106,8 +113,8 @@
           <tr>
             <td class="table-title">职业：</td>
             <td>{{userInfo.career}}</td>
-            <td class="table-title">用户来源：</td>
-            <td>{{userInfo.platform}}</td>
+            <td class="table-title"></td>
+            <td>{{""}}</td>
             <td></td>
           </tr>
           <tr>

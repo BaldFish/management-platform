@@ -13,11 +13,11 @@
           <br/>
           <br/>
           <br/>
-          <label>注册时间：</label>
+          <!--<label>注册时间：</label>
           <el-date-picker class="date_input" v-model="time" type="daterange" range-separator="~" start-placeholder="开始日期"
                           end-placeholder="结束日期"
                           :default-time="['00:00:00', '23:59:59']">
-          </el-date-picker>
+          </el-date-picker>-->
           <input type="button" @click="btnSearchUserList" class="search-btn" value="搜索">
         </div>
       </div>

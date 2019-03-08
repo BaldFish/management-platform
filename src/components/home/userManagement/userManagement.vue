@@ -21,9 +21,9 @@
               <el-menu-item index="accountRanking">
                 <router-link to="/home/userManagement/accountRanking">账户金额排行</router-link>
               </el-menu-item>
-              <el-menu-item index="accountRanking">
+              <!--<el-menu-item index="accountRanking">
                 <router-link to="/home/userManagement/apiUserQuery">API账户查询</router-link>
-              </el-menu-item>
+              </el-menu-item>-->
               <!--<el-menu-item index="yuanDouRecharge">
                 <router-link to="/home/userManagement/yuanDouRecharge">元豆充值</router-link>
               </el-menu-item>
