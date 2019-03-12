@@ -2,10 +2,10 @@
   <div class="home">
     <div class="head_wrap">
       <div class="head">
-        <span>后台管理系统</span>
+        <span class="logo-title">元征</span>
         <ul class="nav">
           <li class="">
-            <router-link to="/home/userManagement"><span>用户管理</span></router-link>
+            <router-link to="/home/userManagement"><span>账户管理</span></router-link>
           </li>
           <li class="">
             <router-link to="/home/articleManagement"><span>文章管理</span></router-link>
@@ -21,7 +21,7 @@
           </Button>
           <DropdownMenu slot="list">
             <DropdownItem>修改密码</DropdownItem>
-            <DropdownItem>退出登录</DropdownItem>
+            <DropdownItem><span @click="logOff">退出登录</span></DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <!--<el-dropdown class="user_info" trigger="click" placement="top" @mouseleave.stop.native="leaveUl" v-if="isLogin">
@@ -48,6 +48,7 @@
       return {
         isLogin: true,
         switchover: false,
+        session_id: "",
       }
     },
     created() {
@@ -58,6 +59,7 @@
       }
     },
     mounted() {
+      this.session_id = JSON.parse(sessionStorage.getItem("myLogin")).data.id;
     },
     watch: {},
     computed: {},
@@ -70,6 +72,18 @@
       },
       dropOut() {
       },
+      logOff(){
+        this.$axios({
+          method: "DELETE",
+          url: `${this.$baseURL}/v1/backstage/sessions/${this.session_id}`,
+          data: this.$querystring.stringify({})
+        }).then(res => {
+          sessionStorage.removeItem("myLogin");
+          this.$router.push("/login")
+        }).catch(error => {
+          console.log(error)
+        })
+      }
     },
   }
 </script>
@@ -82,38 +96,44 @@
     .head_wrap {
       .head{
         min-width 1200px
-        height 100px
+        height 80px
         //margin 0 auto
         font-size 0;
         color #000000
-        line-height 100px
-        span{
-          font-size 20px;
-          font-weight 700
-          vertical-align top
+        line-height 80px
+        background-color: #437bff;
+        .logo-title{
+          width: 170px;
+          height: 80px;
+          display inline-block
+          font-size: 36px;
+          color: #ffffff;
+          background-color: #3771fa;
+          text-align center
+          float left
         }
         .nav {
           display inline-block
           font-size 0
           margin-left 50px
-          height 100px
+          height 80px
           li {
             display: inline-block;
             margin-right 50px
-            height 100px
+            height 80px
             a {
               cursor pointer
               span{
-                padding-top 20px
-                padding-bottom 20px
-                color #000000
-                font-size: 18px;
+                padding-bottom 14px
+                color #ffffff
+                font-size: 16px;
                 font-weight normal
               }
               &.router-link-active, &:hover {
                 span{
-                  color #409EFF
-                  border-bottom 1px solid #409EFF
+                  font-size: 18px;
+                  color #ffffff
+                  border-bottom 1px solid #ffffff
                 }
               }
             }
@@ -123,9 +143,11 @@
           float right
           position relative
           margin-right 20px
-          min-width 100px
+          min-width 80px
           .ivu-btn{
             font-size 16px
+            background-color: #437bff;
+            border: none;
           }
         }
       }
@@ -145,7 +167,7 @@
       transform-origin: center top 0px !important;
       top: 70px !important;
       left: 0px !important;
-      border 1px solid #409EFF
+      border-radius: 10px;
       .ivu-dropdown-menu{
         .ivu-dropdown-item{
           font-size 16px !important
