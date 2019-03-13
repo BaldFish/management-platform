@@ -143,15 +143,18 @@
           }
         }).then(res => {
           this.totalUser = res.data.data.count;
-          this.totalYJF = res.data.data.TSD;
-          this.totalYDD = res.data.data.ADE;
-          this.totalGGD = res.data.data.YDD;
           let that = this;
           res.data.data.partners.forEach(function (item) {
             if (item.created_at) {
               item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
             }
+            item.TSD = item.TSD.toFixed(3);
+            item.YDD = item.YDD.toFixed(3);
+            item.ADE = item.ADE.toFixed(3);
           });
+          this.totalYJF = res.data.data.TSD;
+          this.totalYDD = res.data.data.YDD;
+          this.totalGGD = res.data.data.ADE;
           this.userList = res.data.data.partners;
         }).catch(error => {
           console.log(error)
