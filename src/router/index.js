@@ -22,6 +22,9 @@ import myArticleList from '@/components/home/articleManagement/articleList'
 import myAddArticle from '@/components/home/articleManagement/addArticle'
 import myMessageManagement from '@/components/home/messageManagement/messageManagement'
 import myMessageQuery from '@/components/home/messageManagement/messageQuery'
+import myOperationManagement from '@/components/home/operationManagement/operationManagement'
+import myUpChainAudit from '@/components/home/operationManagement/upChainAudit'
+import myRealNameAuth from '@/components/home/operationManagement/realNameAuth'
 Vue.use(Router);
 
 export default new Router({
@@ -116,6 +119,26 @@ export default new Router({
               path: '/home/messageManagement/messageQuery',
               name: 'messageQuery',
               component: myMessageQuery,
+            },
+          ]
+        },
+        {
+          path: '/home/operationManagement',
+          component: myOperationManagement,
+          children:[
+            {
+              path: '',
+              redirect:"/home/operationManagement/upChainAudit",
+            },
+            {
+              path: '/home/operationManagement/upChainAudit',
+              name: 'upChainAudit',
+              component: myUpChainAudit,
+            },
+            {
+              path: '/home/operationManagement/realNameAuth',
+              name: 'realNameAuth',
+              component: myRealNameAuth,
             },
           ]
         },

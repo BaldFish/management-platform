@@ -11,6 +11,9 @@
             <router-link to="/home/messageManagement"><span>消息管理</span></router-link>
           </li>
           <li class="">
+            <router-link to="/home/operationManagement"><span>运营管理</span></router-link>
+          </li>
+          <li class="">
             <router-link to="/home/articleManagement"><span>文章管理</span></router-link>
           </li>
           <li class="">
