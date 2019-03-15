@@ -12,8 +12,8 @@
               <el-menu-item index="upChainAudit">
                 <router-link to="/home/operationManagement/upChainAudit">上链审核</router-link>
               </el-menu-item>
-              <el-menu-item index="realNameAuth">
-                <router-link to="/home/operationManagement/realNameAuth">证件审核</router-link>
+              <el-menu-item index="credentialsAudit">
+                <router-link to="/home/operationManagement/credentialsAudit">证件审核</router-link>
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>

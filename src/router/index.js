@@ -24,6 +24,7 @@ import myMessageManagement from '@/components/home/messageManagement/messageMana
 import myMessageQuery from '@/components/home/messageManagement/messageQuery'
 import myOperationManagement from '@/components/home/operationManagement/operationManagement'
 import myUpChainAudit from '@/components/home/operationManagement/upChainAudit'
+import myCredentialsAudit from '@/components/home/operationManagement/credentialsAudit'
 import myRealNameAuth from '@/components/home/operationManagement/realNameAuth'
 Vue.use(Router);
 
@@ -134,6 +135,11 @@ export default new Router({
               path: '/home/operationManagement/upChainAudit',
               name: 'upChainAudit',
               component: myUpChainAudit,
+            },
+            {
+              path: '/home/operationManagement/credentialsAudit',
+              name: 'credentialsAudit',
+              component: myCredentialsAudit,
             },
             {
               path: '/home/operationManagement/realNameAuth',

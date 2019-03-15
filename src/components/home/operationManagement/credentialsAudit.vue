@@ -3,7 +3,7 @@
     <div class="list_wrap">
       <div style="position: relative; background-color: #f0f3fa;height: 235px;">
         <div class="content-title">
-          <h3>上链审核</h3>
+          <h3>证件审核</h3>
         </div>
         <div class="content-query">
           <label>手机号码：</label>
@@ -56,19 +56,14 @@
                 <span>{{ scope.row.name }}</span>
               </template>
             </el-table-column>
+            <el-table-column label="证件类型" align="center" min-width="120" sortable='custom'>
+              <template slot-scope="scope">
+                <span>{{ scope.row.idcard}}</span>
+              </template>
+            </el-table-column>
             <el-table-column label="钱包地址" align="center" min-width="130" sortable='custom'>
               <template slot-scope="scope">
                 <span>{{ scope.row.address.substr(0,12) + "..." }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="资产类型" align="center" min-width="120" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.idcard}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="资产名称" align="center" min-width="120" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.idcard}}</span>
               </template>
             </el-table-column>
             <el-table-column label="申请时间" align="center" min-width="160" sortable='custom'>
@@ -246,8 +241,7 @@
       //获取所点击行的信息
       getClickInfo(row){
         sessionStorage.setItem("clickInfo", JSON.stringify(row));
-        //this.$router.push("/home/userManagement/userDetails");
-        window.open("/home/userManagement/userDetails",'_blank');
+        window.open("/home/operationManagement/realNameAuth",'_blank');
       },
       //更改每页显示条数
       handleSizeChange(val) {
