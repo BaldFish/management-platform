@@ -3,7 +3,7 @@
     <div class="list_wrap">
       <div style="position: relative; background-color: #f0f3fa;height: 235px;">
         <div class="content-title">
-          <h3>证件审核</h3>
+          <h3>上链审核</h3>
         </div>
         <div class="content-query">
           <label>手机号码：</label>

@@ -1,11 +1,13 @@
 <template>
   <div class="userQuery">
     <div class="list_wrap">
-      <div style="position: relative; background-color: #f0f3fa;height: 185px;">
+      <div style="position: relative; background-color: #f0f3fa;height: 235px;">
         <div class="content-title">
           <h3>API账户查询</h3>
         </div>
         <div class="content-query">
+          <br>
+          <br>
           <label>手机号码：</label>
           <el-input v-model="phone" placeholder="请输入手机号码" clearable style="width: 150px"></el-input>
           <label>邮箱：</label>
@@ -228,7 +230,7 @@
       }
       .content-query{
         width: 100%;
-        height: 95px;
+        height: 145px;
         border: solid 2px #dfe6f7;
         border-left: none;
         margin-top 10px
