@@ -453,6 +453,9 @@
   .el-range-editor.is-active, .el-range-editor.is-active:hover {
     border-color: #dfe6f7;
   }
+  .el-pagination__sizes .el-input .el-input__inner:hover {
+    border-color: #dfe6f7;
+  }
   .user-flow{
     .el-table{
       color: #222222;
