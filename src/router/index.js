@@ -13,6 +13,7 @@ import myMerchantQuery from '@/components/home/userManagement/merchantQuery'
 import mySystemQuery from '@/components/home/userManagement/systemQuery'
 import myMerchantDetails from '@/components/home/userManagement/merchantDetails'
 import mySystemDetails from '@/components/home/userManagement/systemDetails'
+import myApiUserDetails from '@/components/home/userManagement/apiUserDetails'
 import mySystemManagement from '@/components/home/systemManagement/systemManagement'
 import myBannerList from '@/components/home/systemManagement/bannerList'
 import myAddBanner from '@/components/home/systemManagement/addBanner'
@@ -105,6 +106,11 @@ export default new Router({
               path: '/home/userManagement/systemDetails',
               name: 'systemDetails',
               component: mySystemDetails,
+            },
+            {
+              path: '/home/userManagement/apiUserDetails',
+              name: 'apiUserDetails',
+              component: myApiUserDetails,
             },
           ]
         },

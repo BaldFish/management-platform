@@ -27,7 +27,7 @@
         </div>
         <div class="table-details">
           <el-table :data="userList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" @selection-change="handleSelectionChange"
-                      @sort-change='sortChange'>
+                    @row-click="getClickInfo" @sort-change='sortChange'>
             <el-table-column type="selection" align="center" width="50">
             </el-table-column>
             <el-table-column label="编号" align="center" type="index" width="50">
@@ -194,6 +194,11 @@
       btnSearchUserList() {
         this.page = 1;//按钮搜索时初始化page
         this.getApiUserList()
+      },
+      //获取所点击行的信息
+      getClickInfo(row){
+        sessionStorage.setItem("clickInfo", JSON.stringify(row));
+        window.open("/home/userManagement/apiUserDetails",'_blank');
       },
       //更改每页显示条数
       handleSizeChange(val) {
