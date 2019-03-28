@@ -85,7 +85,7 @@
         :visible.sync="centerDialogVisible"
         center>
         <label>能力：</label>
-        <el-select v-model="apiTypeId" placeholder="请选择能力" style="width: 150px">
+        <el-select v-model="apiTypeId" placeholder="请选择能力" style="width: 150px;margin-right: 0">
           <el-option
             v-for="item in apiTypeIdList"
             :key="item.api_type_id"
@@ -94,7 +94,7 @@
           </el-option>
         </el-select>
         <label style="margin-left: 20px">API接口名称：</label>
-        <el-input v-model="apiName" placeholder="请输入API接口名称" clearable style="width: 180px;"></el-input>
+        <el-input v-model="apiName" placeholder="请输入API接口名称" clearable style="width: 180px;margin-right: 0"></el-input>
         <input type="button" @click="modalsearch" value="搜索" class="btn-search">
         <el-table :data="addAbilityList" style="width: 100%;margin-top: 16px" ref="multipleTable" tooltip-effect="dark"
                   @selection-change="handleSelectionChange">
@@ -125,7 +125,7 @@
         <label class="fr">支付总金额：<span>{{pay_amount}}</span></label>
       </div>
       <el-table :data="flowList" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
-        <el-table-column label="名称" align="center" width="150">
+        <el-table-column label="名称" align="center" width="240">
           <template slot-scope="scope">
             <span>{{ scope.row.api_name }}</span>
           </template>
@@ -147,7 +147,7 @@
         </el-table-column>
         <el-table-column label="备注" align="center" min-width="160">
           <template slot-scope="scope">
-            <span>充值</span>
+            <span>{{ scope.row.remark}}</span>
           </template>
         </el-table-column>
       </el-table>
@@ -595,57 +595,60 @@
       background-color: #437bff;
     }
   }
-  .el-dialog{
-    width: 660px;
-    height: auto;
-    border-radius: 32px;
-    .el-dialog__header{
-      text-align left
-      border-bottom: solid 1px #bfbfbf;
-      font-size: 22px;
-      color: #333333;
-      padding-left: 30px;
-    }
-    .el-dialog__body{
-      padding-bottom: 12px;
-      .btn-search{
-        width: 80px;
-        height: 34px;
-        line-height: 34px;
-        text-align: center;
-        background-color: #437bff;
-        border-radius: 18px;
-        color: #fff;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        margin-left: 20px;
+  .apiUserDetails{
+    .el-dialog{
+      width: 695px !important;
+      height: auto !important;
+      border-radius: 32px !important;
+      .el-dialog__header{
+        text-align left
+        border-bottom: solid 1px #bfbfbf;
+        font-size: 22px;
+        color: #333333;
+        padding-left: 30px;
       }
-    }
-    .el-dialog__footer{
-      padding: 10px 20px 30px;
-      .el-button{
-        width: 100px;
-        height: 40px;
-        border-radius: 17px;
-        font-size: 20px;
-        span{
-          position: relative;
-          bottom: 3px;
+      .el-dialog__body{
+        padding-bottom: 12px;
+        .btn-search{
+          width: 80px;
+          height: 34px;
+          line-height: 34px;
+          text-align: center;
+          background-color: #437bff;
+          border-radius: 18px;
+          color: #fff;
+          outline: none;
+          border: none;
+          cursor: pointer;
+          margin-left: 20px;
         }
       }
-      .el-button:first-child{
-        margin-right 40px
-        color: #437bff;
-        border: solid 1px #437bff;
-      }
-      .el-button:first-child:hover{
-        background-color: #ffffff;
-      }
-      .el-button:last-child{
-        background-color: #437bff;
+      .el-dialog__footer{
+        padding: 10px 20px 30px;
+        .el-button{
+          width: 100px;
+          height: 40px;
+          border-radius: 17px;
+          font-size: 20px;
+          span{
+            position: relative;
+            bottom: 3px;
+          }
+        }
+        .el-button:first-child{
+          margin-right 40px
+          color: #437bff;
+          border: solid 1px #437bff;
+        }
+        .el-button:first-child:hover{
+          background-color: #ffffff;
+        }
+        .el-button:last-child{
+          background-color: #437bff;
+        }
       }
     }
+
   }
 
 
