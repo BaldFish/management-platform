@@ -263,6 +263,12 @@
             'X-Access-Token': this.token,
           }
         }).then(res => {
+          let that = this;
+          res.data.data.res_list.forEach(function (item) {
+            if (item.created_at) {
+              item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
+            }
+          });
           this.abilityList = res.data.data.res_list;
         }).catch(error => {
           console.log(error)
