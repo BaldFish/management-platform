@@ -1,35 +1,17 @@
 <template>
-  <div class="userManagement">
+  <div class="messageManagement">
     <el-container>
       <el-aside width="170px" class="nav-aside">
         <el-menu default-active="userQuery" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                  unique-opened>
-          <el-submenu index="userManagement">
+          <el-submenu index="messageManagement">
             <template slot="title">
-              <span slot="title">账户管理</span>
+              <span slot="title">消息管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="userQuery">
-                <router-link to="/home/userManagement/userQuery">用户查询</router-link>
+                <router-link to="/home/messageManagement/messageQuery">消息列表</router-link>
               </el-menu-item>
-              <el-menu-item index="accountRanking">
-                <router-link to="/home/userManagement/merchantQuery">商户查询</router-link>
-              </el-menu-item>
-              <el-menu-item index="accountRanking">
-                <router-link to="/home/userManagement/systemQuery">系统查询</router-link>
-              </el-menu-item>
-              <el-menu-item index="accountRanking">
-                <router-link to="/home/userManagement/accountRanking">账户金额排行</router-link>
-              </el-menu-item>
-              <el-menu-item index="accountRanking">
-                <router-link to="/home/userManagement/apiUserQuery">API账户查询</router-link>
-              </el-menu-item>
-              <!--<el-menu-item index="yuanDouRecharge">
-                <router-link to="/home/userManagement/yuanDouRecharge">元豆充值</router-link>
-              </el-menu-item>
-              <el-menu-item index="assetQuery">
-                <router-link to="/home/userManagement/assetQuery">资产查询</router-link>
-              </el-menu-item>-->
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -43,7 +25,7 @@
 
 <script>
   export default {
-    name: "userManagement",
+    name: "messageManagement",
     components: {},
     data() {
       return {
@@ -69,7 +51,7 @@
 </script>
 
 <style scoped lang="stylus">
-  .userManagement {
+  .messageManagement {
     a {
       color #303133
     }

@@ -8,6 +8,12 @@ import myAccountRanking from '@/components/home/userManagement/accountRanking'
 import myYuanDouRecharge from '@/components/home/userManagement/yuanDouRecharge'
 import myAssetQuery from '@/components/home/userManagement/assetQuery'
 import myUserDetails from '@/components/home/userManagement/userDetails'
+import myApiUserQuery from '@/components/home/userManagement/apiUserQuery'
+import myMerchantQuery from '@/components/home/userManagement/merchantQuery'
+import mySystemQuery from '@/components/home/userManagement/systemQuery'
+import myMerchantDetails from '@/components/home/userManagement/merchantDetails'
+import mySystemDetails from '@/components/home/userManagement/systemDetails'
+import myApiUserDetails from '@/components/home/userManagement/apiUserDetails'
 import mySystemManagement from '@/components/home/systemManagement/systemManagement'
 import myBannerList from '@/components/home/systemManagement/bannerList'
 import myAddBanner from '@/components/home/systemManagement/addBanner'
@@ -15,11 +21,12 @@ import myArticleManagement from '@/components/home/articleManagement/articleMana
 import myCategoryList from '@/components/home/articleManagement/categoryList'
 import myArticleList from '@/components/home/articleManagement/articleList'
 import myAddArticle from '@/components/home/articleManagement/addArticle'
-import myApiUserQuery from '@/components/home/userManagement/apiUserQuery'
-import myMerchantQuery from '@/components/home/userManagement/merchantQuery'
-import mySystemQuery from '@/components/home/userManagement/systemQuery'
-import myMerchantDetails from '@/components/home/userManagement/merchantDetails'
-import mySystemDetails from '@/components/home/userManagement/systemDetails'
+import myMessageManagement from '@/components/home/messageManagement/messageManagement'
+import myMessageQuery from '@/components/home/messageManagement/messageQuery'
+import myOperationManagement from '@/components/home/operationManagement/operationManagement'
+import myUpChainAudit from '@/components/home/operationManagement/upChainAudit'
+import myCredentialsAudit from '@/components/home/operationManagement/credentialsAudit'
+import myRealNameAuth from '@/components/home/operationManagement/realNameAuth'
 Vue.use(Router);
 
 export default new Router({
@@ -99,6 +106,51 @@ export default new Router({
               path: '/home/userManagement/systemDetails',
               name: 'systemDetails',
               component: mySystemDetails,
+            },
+            {
+              path: '/home/userManagement/apiUserDetails',
+              name: 'apiUserDetails',
+              component: myApiUserDetails,
+            },
+          ]
+        },
+        {
+          path: '/home/messageManagement',
+          component: myMessageManagement,
+          children:[
+            {
+              path: '',
+              redirect:"/home/messageManagement/messageQuery",
+            },
+            {
+              path: '/home/messageManagement/messageQuery',
+              name: 'messageQuery',
+              component: myMessageQuery,
+            },
+          ]
+        },
+        {
+          path: '/home/operationManagement',
+          component: myOperationManagement,
+          children:[
+            {
+              path: '',
+              redirect:"/home/operationManagement/upChainAudit",
+            },
+            {
+              path: '/home/operationManagement/upChainAudit',
+              name: 'upChainAudit',
+              component: myUpChainAudit,
+            },
+            {
+              path: '/home/operationManagement/credentialsAudit',
+              name: 'credentialsAudit',
+              component: myCredentialsAudit,
+            },
+            {
+              path: '/home/operationManagement/realNameAuth',
+              name: 'realNameAuth',
+              component: myRealNameAuth,
             },
           ]
         },
