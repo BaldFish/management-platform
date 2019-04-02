@@ -80,6 +80,18 @@
           </template>
         </el-table-column>
       </el-table>
+      <!--分页-->
+      <div class="block" style="text-align:center">
+        <el-pagination
+          @size-change="handleSizeChangeAbility"
+          @current-change="handleCurrentChangeAbility"
+          :current-page.sync="currentPage_ability"
+          :page-size=limit_ability
+          :page-sizes="[5, 10, 20, 30]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total=total_ability>
+        </el-pagination>
+      </div>
       <el-dialog
         title="新增能力"
         :visible.sync="centerDialogVisible"
@@ -176,9 +188,13 @@
         userId: "",
         time: ["",""],
         currentPage: 1,
+        currentPage_ability: 1,
         total: 10,
+        total_ability: 10,
         page: 1,
+        page_ability: 1,
         limit: 10,
+        limit_ability: 10,
         clickInfo:{},
         apiIdList: [],
         apiId: 'all',
@@ -258,11 +274,12 @@
       getAbilityList() {
         this.$axios({
           method: "GET",
-          url: `${this.$baseURL}/v1/platform/user-apis/${this.userId}?api_id=${this.apiId}&start_date=${this.time[0]}&end_date=${this.time[1]}&page=${this.page}&limit=${this.limit}`,
+          url: `${this.$baseURL}/v1/platform/user-apis/${this.userId}?api_id=${this.apiId}&start_date=${this.time[0]}&end_date=${this.time[1]}&page=${this.page_ability}&limit=${this.limit_ability}`,
           headers: {
             'X-Access-Token': this.token,
           }
         }).then(res => {
+          this.total_ability = res.data.data.total_count;
           let that = this;
           res.data.data.res_list.forEach(function (item) {
             if (item.created_at) {
@@ -370,9 +387,22 @@
       //点击搜索按钮搜索
       search(){
         this.page=1;
+        this.page_ability=1;
         this.getAbilityList();
         this.getTransactionFlow();
       },
+      /*能力分页*/
+      //更改每页显示条数
+      handleSizeChangeAbility(val) {
+        this.limit_ability = val;
+        this.getAbilityList();
+      },
+      //切换分页
+      handleCurrentChangeAbility(val) {
+        this.page_ability = val;
+        this.getAbilityList();
+      },
+      /*流水分页*/
       //更改每页显示条数
       handleSizeChange(val) {
         this.limit = val;
