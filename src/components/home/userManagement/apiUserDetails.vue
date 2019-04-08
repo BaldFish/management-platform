@@ -261,11 +261,13 @@
           this.total = res.data.data.total_count;
           this.pay_amount = res.data.data.pay_amount;
           let that = this;
-          res.data.data.res_list.forEach(function (item) {
-            if (item.purchased_time) {
-              item.purchased_time = that.$utils.formatDate(new Date(item.purchased_time), "yyyy-MM-dd hh:mm:ss");
-            }
-          });
+          if(res.data.data.res_list){
+            res.data.data.res_list.forEach(function (item) {
+              if (item.purchased_time) {
+                item.purchased_time = that.$utils.formatDate(new Date(item.purchased_time), "yyyy-MM-dd hh:mm:ss");
+              }
+            });
+          }
         }).catch(error => {
           console.log(error)
         })
@@ -281,11 +283,13 @@
         }).then(res => {
           this.total_ability = res.data.data.total_count;
           let that = this;
-          res.data.data.res_list.forEach(function (item) {
-            if (item.created_at) {
-              item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
-            }
-          });
+          if(res.data.data.res_list){
+            res.data.data.res_list.forEach(function (item) {
+              if (item.created_at) {
+                item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
+              }
+            });
+          }
           this.abilityList = res.data.data.res_list;
         }).catch(error => {
           console.log(error)
