@@ -248,6 +248,29 @@
           console.log(error)
         })
       },
+      //能力运行概况列表
+      getAbilityList() {
+        this.$axios({
+          method: "GET",
+          url: `${this.$baseURL}/v1/platform/user-apis/${this.userId}?api_id=${this.apiId}&start_date=&end_date=&page=${this.page_ability}&limit=${this.limit_ability}`,
+          headers: {
+            'X-Access-Token': this.token,
+          }
+        }).then(res => {
+          this.total_ability = res.data.data.total_count;
+          let that = this;
+          if(res.data.data.res_list){
+            res.data.data.res_list.forEach(function (item) {
+              if (item.created_at) {
+                item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
+              }
+            });
+          }
+          this.abilityList = res.data.data.res_list;
+        }).catch(error => {
+          console.log(error)
+        })
+      },
       //交易流水列表
       getTransactionFlow() {
         this.$axios({
@@ -268,29 +291,6 @@
               }
             });
           }
-        }).catch(error => {
-          console.log(error)
-        })
-      },
-      //能力运行概况列表
-      getAbilityList() {
-        this.$axios({
-          method: "GET",
-          url: `${this.$baseURL}/v1/platform/user-apis/${this.userId}?api_id=${this.apiId}&start_date=${this.time[0]}&end_date=${this.time[1]}&page=${this.page_ability}&limit=${this.limit_ability}`,
-          headers: {
-            'X-Access-Token': this.token,
-          }
-        }).then(res => {
-          this.total_ability = res.data.data.total_count;
-          let that = this;
-          if(res.data.data.res_list){
-            res.data.data.res_list.forEach(function (item) {
-              if (item.created_at) {
-                item.created_at = that.$utils.formatDate(new Date(item.created_at), "yyyy-MM-dd hh:mm:ss");
-              }
-            });
-          }
-          this.abilityList = res.data.data.res_list;
         }).catch(error => {
           console.log(error)
         })
