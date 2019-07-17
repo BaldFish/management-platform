@@ -13,7 +13,8 @@ const config = {
   strict: true,
   enableAutoClasses: true,
   events: 'blur',
-  inject: true
+  inject: true,
+  dictionary: { zh_CN }
 };
 Vue.use(VeeValidate, config); //一般插件都要use一下
 
