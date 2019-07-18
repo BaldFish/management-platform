@@ -13,7 +13,8 @@ const config = {
   strict: true,
   enableAutoClasses: true,
   events: 'blur',
-  inject: true
+  inject: true,
+  dictionary: { zh_CN }
 };
 Vue.use(VeeValidate, config); //一般插件都要use一下
 
@@ -120,7 +121,7 @@ Validator.extend('idcard', {
       91: "国外 "
     };
     var pass = true;
-    
+
     if (!value || !/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(value)) {
       pass = false;
     } else if (!city[value.substr(0, 2)]) {
