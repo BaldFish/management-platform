@@ -1064,12 +1064,6 @@
         }
       }
     }
-
-    .el-tabs .el-tabs__header{
-      margin: 0;
-      height: 35px;
-      line-height: 35px;
-      background-color: #fff;
-    }
+    
   }
 </style>
