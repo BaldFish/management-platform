@@ -16,19 +16,19 @@
                     <span>{{ scope.row.wallet_address }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="姓名" align="center" min-width="120">
-                  <template slot-scope="scope">
-                    <span>{{ scope.row.realname }}</span>
-                  </template>
-                </el-table-column>
                 <el-table-column label="金额" align="center" min-width="120">
                   <template slot-scope="scope">
-                    <span>{{ scope.row.yuanj }}</span>
+                    <span>{{ scope.row.balance }}</span>
                   </template>
                 </el-table-column>
                 <el-table-column label="占比" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{(scope.row.rate *100).toFixed(2) }}%</span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="姓名" align="center" min-width="120">
+                  <template slot-scope="scope">
+                    <span>{{ scope.row.name }}</span>
                   </template>
                 </el-table-column>
               </el-table>
@@ -51,19 +51,19 @@
                     <span>{{ scope.row.wallet_address }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="姓名" align="center" min-width="120">
-                  <template slot-scope="scope">
-                    <span>{{ scope.row.realname }}</span>
-                  </template>
-                </el-table-column>
                 <el-table-column label="金额" align="center" min-width="120">
                   <template slot-scope="scope">
-                    <span>{{ scope.row.yuand }}</span>
+                    <span>{{ scope.row.balance }}</span>
                   </template>
                 </el-table-column>
                 <el-table-column label="占比" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{(scope.row.rate *100).toFixed(2) }}%</span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="姓名" align="center" min-width="120">
+                  <template slot-scope="scope">
+                    <span>{{ scope.row.name }}</span>
                   </template>
                 </el-table-column>
               </el-table>
@@ -86,19 +86,19 @@
                     <span>{{ scope.row.wallet_address }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="姓名" align="center" min-width="120">
-                  <template slot-scope="scope">
-                    <span>{{ scope.row.realname }}</span>
-                  </template>
-                </el-table-column>
                 <el-table-column label="金额" align="center" min-width="120">
                   <template slot-scope="scope">
-                    <span>{{ scope.row.ydd }}</span>
+                    <span>{{ scope.row.balance }}</span>
                   </template>
                 </el-table-column>
                 <el-table-column label="占比" align="center" min-width="120">
                   <template slot-scope="scope">
                     <span>{{(scope.row.rate *100).toFixed(2) }}%</span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="姓名" align="center" min-width="120">
+                  <template slot-scope="scope">
+                    <span>{{ scope.row.name }}</span>
                   </template>
                 </el-table-column>
               </el-table>
@@ -188,21 +188,16 @@
         this.getYuanPointsList()
       },
       getYuanPointsList() {
-        let data = {
-          page_yuanj:this.page_yuanj,
-          limit_yuanj:this.limit_yuanj,
-        };
         this.$axios({
-          method: "POST",
-          url: `${this.$baseURL}/v1/backstage/users/sortedbalance`,
-          data: this.$querystring.stringify(data),
+          method: "GET",
+          url: `${this.$baseURL}/v1/backstage/users/rank/symbol/tsd?page=${this.page_yuanj}&limit=${this.limit_yuanj}`,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-Access-Token': this.token,
           }
         }).then(res => {
-          this.yuanPointsList = res.data.yuanj;
-          this.yuanPointTotal = res.data.countyuanj;
+          this.yuanPointsList = res.data.data.res_list;
+          this.yuanPointTotal = res.data.data.total_count;
         })
         .catch(error => {
           this.yuanPointsList = [];
@@ -218,21 +213,16 @@
         this.getAdvBeansList()
       },
       getAdvBeansList() {
-        let data = {
-          page_yuand:this.page_yuand,
-          limit_yuand:this.limit_yuand,
-        };
         this.$axios({
-          method: "POST",
-          url: `${this.$baseURL}/v1/backstage/users/sortedbalance`,
-          data: this.$querystring.stringify(data),
+          method: "GET",
+          url: `${this.$baseURL}/v1/backstage/users/rank/symbol/ade?page=${this.page_yuand}&limit=${this.limit_yuand}`,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-Access-Token': this.token,
           }
         }).then(res => {
-          this.advBeansList = res.data.yuand;
-          this.advBeansTotal = res.data.countyuand;
+          this.advBeansList = res.data.data.res_list;
+          this.advBeansTotal = res.data.data.total_count;
         })
           .catch(error => {
             this.advBeansList = [];
@@ -248,21 +238,16 @@
         this.getYuanBeansList()
       },
       getYuanBeansList() {
-        let data = {
-          page_ydd:this.page_ydd,
-          limit_ydd:this.limit_ydd,
-        };
         this.$axios({
-          method: "POST",
-          url: `${this.$baseURL}/v1/backstage/users/sortedbalance`,
-          data: this.$querystring.stringify(data),
+          method: "GET",
+          url: `${this.$baseURL}/v1/backstage/users/rank/symbol/ydd?page=${this.page_ydd}&limit=${this.limit_ydd}`,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-Access-Token': this.token,
           }
         }).then(res => {
-          this.yuanBeansList = res.data.ydd;
-          this.yuanBeansTotal = res.data.countydd;
+          this.yuanBeansList = res.data.data.res_list;
+          this.yuanBeansTotal = res.data.data.total_count;
         })
           .catch(error => {
             this.yuanBeansList = [];
