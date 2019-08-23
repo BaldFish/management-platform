@@ -42,6 +42,15 @@
               </el-date-picker>
               <input type="button" @click="search" value="搜索" class="btn-search">
             </div>
+            <div style="clear: both"></div>
+            <div class="amount-list">
+              <label>奖励总金额：</label>
+              <span>{{amountBouns}}</span>
+              <label>扣款总金额：</label>
+              <span>{{amountWithhold}}</span>
+              <label>转账总金额：</label>
+              <span>{{amountExchange}}</span>
+            </div>
             <el-tab-pane label="元积分" name="TSD">
               <!--表格-->
               <el-table :data="tableData" style="width: 100%" ref="multipleTable" tooltip-effect="dark">
@@ -154,6 +163,9 @@
         page: 1,
         limit: 10,
         address:"",
+        amountBouns:"",
+        amountWithhold:"",
+        amountExchange:"",
       }
     },
     created() {
@@ -167,6 +179,7 @@
     },
     mounted() {
       this.getValidWalletFlow();
+      this.getAmount();
     },
     watch: {
       time: function () {
@@ -205,6 +218,32 @@
           console.log(error)
         })
       },
+      //获取总金额
+      getAmount(){
+        this.$axios({
+          method: "GET",
+          url: `${this.$baseURL}/v1/backstage/partners/statistics?address=${this.address}`,
+          headers: {
+            'X-Access-Token': this.token,
+          }
+        }).then(res => {
+          if (this.type2 === "TSD"){
+            this.amountBouns = res.data.data.TSD.reward_amount;
+            this.amountWithhold = res.data.data.TSD.deduction_income;
+            this.amountExchange = res.data.data.TSD.transfer_amount
+          } else if (this.type2 === "ADE"){
+            this.amountBouns = res.data.data.ADE.reward_amount;
+            this.amountWithhold = res.data.data.ADE.deduction_income;
+            this.amountExchange = res.data.data.ADE.transfer_amount
+          } else if (this.type2 === "YDD"){
+            this.amountBouns = res.data.data.YDD.reward_amount;
+            this.amountWithhold = res.data.data.YDD.deduction_income;
+            this.amountExchange = res.data.data.YDD.transfer_amount
+          }
+        }).catch(error => {
+          console.log(error)
+        })
+      },
       //点击搜索按钮搜索
       search(){
         this.page=1;
@@ -217,6 +256,7 @@
         this.type3 = "";
         this.time = ["",""];
         this.getValidWalletFlow();
+        this.getAmount();
       },
       //点击第3层选项卡
       type3TabClick(tab) {
@@ -271,6 +311,16 @@
       .time-query {
         float right
         padding-right 30px
+      }
+
+      .amount-list{
+        margin-bottom: 20px;
+        margin-left: 35px;
+        font-size 16px
+        span{
+          font-size 18px
+          margin-right 50px
+        }
       }
 
       .address-box{

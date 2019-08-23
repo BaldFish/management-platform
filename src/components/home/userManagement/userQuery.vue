@@ -7,13 +7,13 @@
         </div>
         <div class="content-query">
           <label>手机号码：</label>
-          <el-input v-model="phone" placeholder="请输入手机号码" clearable style="width: 150px"></el-input>
+          <el-input v-model="phone" placeholder="请输入手机号码" clearable style="width: 150px;margin-right: 35px;"></el-input>
           <label>真实姓名：</label>
-          <el-input v-model="name" placeholder="请输入姓名" clearable style="width: 150px"></el-input>
+          <el-input v-model="name" placeholder="请输入姓名" clearable style="width: 150px;margin-right: 35px;"></el-input>
           <label>邮箱：</label>
-          <el-input v-model="email" placeholder="请输入邮箱" clearable style="width: 170px"></el-input>
-          <label>身份证号：</label>
-          <el-input v-model="idcard" placeholder="请输入身份证号" clearable style="width: 200px"></el-input>
+          <el-input v-model="email" placeholder="请输入邮箱" clearable style="width: 170px;margin-right: 35px;"></el-input>
+          <label>微信用户名：</label>
+          <el-input v-model="nickname" placeholder="请输入微信用户名" clearable style="width: 200px"></el-input>
           <br>
           <br>
           <label>钱包地址：</label>
@@ -35,7 +35,6 @@
       <div class="content-table">
         <div class="table-title">
           <label>用户总数：</label><span class="mar">{{this.count_user}}个</span>
-          <label>拥有钱包用户数：</label><span class="mar">{{this.count_with_address}}个</span>
           <label>已实名人数：</label><span class="mar">{{this.count_with_idcard}}个</span>
           <label>已绑定行驶证人数：</label><span class="mar">{{this.count_with_vehicle}}个</span>
           <br>
@@ -60,21 +59,6 @@
             <el-table-column label="手机号码" align="center" width="150" sortable='custom'>
               <template slot-scope="scope">
                 <span>{{ scope.row.phone }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="真实姓名" align="center" min-width="100" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.name }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="邮箱" align="center" min-width="100" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.email }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="身份证号" align="center" min-width="120" sortable='custom'>
-              <template slot-scope="scope">
-                <span>{{ scope.row.idcard}}</span>
               </template>
             </el-table-column>
             <el-table-column label="钱包地址" align="center" min-width="130" sortable='custom'>
@@ -112,6 +96,21 @@
                 <span>{{ scope.row.appname }}</span>
               </template>
             </el-table-column>
+            <el-table-column label="真实姓名" align="center" min-width="100" sortable='custom'>
+              <template slot-scope="scope">
+                <span>{{ scope.row.name }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="邮箱" align="center" min-width="100" sortable='custom'>
+              <template slot-scope="scope">
+                <span>{{ scope.row.email }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="微信用户名" align="center" min-width="120" sortable='custom'>
+              <template slot-scope="scope">
+                <span>{{ scope.row.nickname}}</span>
+              </template>
+            </el-table-column>
           </el-table>
           <div style="margin-top: 20px;margin-bottom: 20px;">
             <el-button type="primary" @click="handleDeletes" icon="el-icon-delete" class="delete-btn">删除</el-button>
@@ -141,7 +140,6 @@
       return {
         totalUser: 10,
         count_user: "",
-        count_with_address: "",
         count_with_idcard: "",
         count_with_vehicle: "",
         totalYJF: "",
@@ -150,7 +148,7 @@
         userList: [],
         phone: "",
         name: "",
-        idcard: "",
+        nickname: "",
         multipleSelection: [],
         //multipleDelete: [],
         loading: false,
@@ -203,14 +201,13 @@
         }
         this.$axios({
           method: "GET",
-          url: `${this.$baseURL}/v1/backstage/users?phone=${initPhone}&name=${this.name}&email=${this.email}&idcard=${this.idcard}&address=${this.address}&platform=${this.platform}&appname=${this.appname}&created_since=${this.time[0]}&created_to=${this.time[1]}&sort=${this.sort}&direction=${this.direction}&page=${this.page-1}&limit=${this.limit}`,
+          url: `${this.$baseURL}/v1/backstage/users?phone=${initPhone}&name=${this.name}&email=${this.email}&nickname=${this.nickname}&address=${this.address}&platform=${this.platform}&appname=${this.appname}&created_since=${this.time[0]}&created_to=${this.time[1]}&sort=${this.sort}&direction=${this.direction}&page=${this.page-1}&limit=${this.limit}`,
           headers: {
             'X-Access-Token': this.token,
           }
         }).then(res => {
           this.totalUser = res.data.count;
           this.count_user = res.data.count;
-          this.count_with_address = res.data.count_with_address;
           this.count_with_idcard = res.data.count_with_idcard;
           this.count_with_vehicle = res.data.count_with_vehicle;
           this.totalYJF = res.data.TSD;
@@ -239,8 +236,8 @@
           this.sort = "phone";
         }else if(column.column.label == "真实姓名"){
           this.sort = "name";
-        }else if(column.column.label == "身份证号"){
-          this.sort = "idcard";
+        }else if(column.column.label == "微信用户名"){
+          this.sort = "nickname";
         }else if(column.column.label == "元积分"){
           this.sort = "TSD";
         }else if(column.column.label == "广告豆"){
