@@ -280,71 +280,72 @@
   }
 </style>
 <style lang="stylus">
-  .el-tabs{
-    border: solid 2px #dfe6f7;
-    border-left: none;
-    .el-tabs__header{
-      margin: 16px;
-      height: 90px;
-      line-height: 90px;
-      background-color: #f0f3fa;
-      .el-tabs__nav{
-        .el-tabs__active-bar{
-          display none
-        }
-        .el-tabs__item{
-          font-size: 20px;
-          color: #437bff;
-          padding 0
-          margin: 0 60px
-        }
-        .is-active{
-          width: 190px;
-          height: 50px;
-          text-align center
-          line-height 50px
-          background-color: #437bff;
-          border-radius: 25px;
-          color: #ffffff
-        }
-      }
-    }
-    .el-tabs__content{
-      margin: 16px
-      .el-tab-pane{
+  .accountRanking{
+    .el-tabs{
+      border: solid 2px #dfe6f7;
+      border-left: none;
+      .el-tabs__header{
+        margin: 16px;
+        height: 90px;
+        line-height: 90px;
         background-color: #f0f3fa;
-        .el-table__header-wrapper{
-          .has-gutter th{
-            background-color: #f0f3fa;
-            font-size: 18px;
-            color: #222222;
+        .el-tabs__nav{
+          .el-tabs__active-bar{
+            display none
+          }
+          .el-tabs__item{
+            font-size: 20px;
+            color: #437bff;
+            padding 0
+            margin: 0 60px
+          }
+          .is-active{
+            width: 190px;
+            height: 50px;
+            text-align center
+            line-height 50px
+            background-color: #437bff;
+            border-radius: 25px;
+            color: #ffffff
           }
         }
-        .el-table__body-wrapper{
+      }
+      .el-tabs__content{
+        margin: 16px
+        .el-tab-pane{
           background-color: #f0f3fa;
-          .el-table__body{
-            margin: 15px
-            width: auto !important
-
-            tbody{
-              tr:nth-child(even){
-                background-color: #f0f3fa;
-              }
+          .el-table__header-wrapper{
+            .has-gutter th{
+              background-color: #f0f3fa;
+              font-size: 18px;
+              color: #222222;
             }
           }
+          .el-table__body-wrapper{
+            background-color: #f0f3fa;
+            .el-table__body{
+              margin: 15px
+              width: auto !important
 
+              tbody{
+                tr:nth-child(even){
+                  background-color: #f0f3fa;
+                }
+              }
+            }
+
+          }
         }
-      }
-      .block{
-        padding: 20px 0;
-      }
+        .block{
+          padding: 20px 0;
+        }
 
 
+      }
+    }
+
+    .el-tabs__nav-wrap::after{
+      background-color #f0f3fa;
     }
   }
-
-  .el-tabs__nav-wrap::after{
-    background-color #f0f3fa;
-  }
-
 </style>

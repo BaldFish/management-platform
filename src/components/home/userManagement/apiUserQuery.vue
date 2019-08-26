@@ -291,24 +291,26 @@
   }
 </style>
 <style lang="stylus">
-  .el-input{
-    margin-right 40px
-    .el-input__inner{
+  .userQuery{
+    .el-input{
+      margin-right 40px
+      .el-input__inner{
+        background-color: #f0f3fa;
+        border: solid 1px #dfe6f7;
+        border-radius unset
+      }
+    }
+    .el-date-editor{
+      border-radius: unset;
       background-color: #f0f3fa;
       border: solid 1px #dfe6f7;
-      border-radius unset
+      input{
+        background-color: #f0f3fa;
+      }
     }
-  }
-  .el-date-editor{
-    border-radius: unset;
-    background-color: #f0f3fa;
-    border: solid 1px #dfe6f7;
-    input{
-      background-color: #f0f3fa;
+    .el-range-editor.is-active, .el-range-editor.is-active:hover{
+      border-color #dfe6f7
     }
-  }
-  .el-range-editor.is-active, .el-range-editor.is-active:hover{
-    border-color #dfe6f7
   }
 
   .table-details{
