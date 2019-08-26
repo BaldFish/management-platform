@@ -1,5 +1,5 @@
 <template>
-  <div class="userDetails">
+  <div class="merchantDetails">
     <div class="user-account">
       <div class="address-box">
         <label>钱包地址：<span>{{address}}</span></label>
@@ -147,7 +147,7 @@
 
 <script>
   export default {
-    name: "userDetails",
+    name: "merchantDetails",
     components: {},
     data() {
       return {
@@ -280,7 +280,7 @@
 </script>
 
 <style scoped lang="stylus">
-  .userDetails {
+  .merchantDetails {
     background-color: rgb(240, 243, 250);
     .user-account {
       margin-bottom 50px
@@ -348,7 +348,7 @@
 </style>
 
 <style lang="stylus">
-  .userDetails{
+  .merchantDetails{
     .el-tabs__nav-wrap::after{
       background-color #ffffff
     }

@@ -1,5 +1,5 @@
 <template>
-  <div class="userDetails">
+  <div class="userDetails-org">
     <div class="user-info">
       <h3>基本信息</h3>
       <br>
@@ -887,7 +887,7 @@
 </script>
 
 <style scoped lang="stylus">
-  .userDetails {
+  .userDetails-org {
     background-color: rgb(240, 243, 250);
     .user-info {
       padding: 20px;
@@ -966,7 +966,7 @@
 </style>
 
 <style lang="stylus">
-  .userDetails{
+  .userDetails-org{
     .el-tabs__nav-wrap::after{
       background-color #ffffff
     }
@@ -1064,6 +1064,6 @@
         }
       }
     }
-    
+
   }
 </style>
